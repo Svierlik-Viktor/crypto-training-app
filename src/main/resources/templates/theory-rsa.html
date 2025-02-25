@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Training App</title>
+    <style>
+        /* Логотип */
+        .logo {
+            text-align: left;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo .crypto {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(to bottom, #7CFC00, #006400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo .training-app {
+            font-size: 20px;
+            font-weight: bold;
+            color: #006400;
+        }
+
+        /* Основний стиль сторінки */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            transition: background-color 0.4s, color 0.4s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        /* Кнопка перемикання теми */
+        .switch {
+            position: relative;
+            width: 70px;
+            height: 36px;
+            background-color: #2196F3;
+            border-radius: 36px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: background-color 0.4s;
+        }
+
+        .toggle-icon {
+            position: absolute;
+            top: 5px;
+            left: 5px; /* Сонце розташоване ліворуч */
+            width: 26px;
+            height: 26px;
+            background-color: yellow; /* Сонце */
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 223, 0, 0.6);
+            transition: transform 0.4s, background-color 0.4s;
+        }
+
+        /* Хмара */
+        .cloud {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            width: 30px;
+            height: 14px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            opacity: 1;
+            transition: opacity 0.4s;
+        }
+
+        .cloud::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 18px;
+            top: -10px;
+            left: 20%;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        /* Зірки */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+            animation: twinkle 1.5s infinite ease-in-out alternate;
+        }
+
+        /* Анімація мерехтіння */
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Темна тема */
+        .switch.night {
+            background-color: rgba(255, 255, 255, 0.14); /* Чорний фон */
+        }
+
+        .switch.night .toggle-icon {
+            transform: translateX(34px); /* Місяць праворуч */
+            background-color: white; /* Місяць білий */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .switch.night .cloud {
+            opacity: 0; /* Хмара прихована */
+        }
+
+        .switch.night .stars {
+            display: block;
+        }
+
+        /* Розташування зірок */
+        .star:nth-child(1) {
+            top: 15%;
+            left: 20%;
+            animation-delay: 0.2s;
+        }
+
+        .star:nth-child(2) {
+            top: 40%;
+            left: 30%;
+            animation-delay: 0.4s;
+        }
+
+        .star:nth-child(3) {
+            top: 70%;
+            left: 40%;
+            animation-delay: 0.6s;
+        }
+
+        .star:nth-child(4) {
+            top: 30%;
+            left: 10%;
+            animation-delay: 0.8s;
+        }
+
+        .star:nth-child(5) {
+            top: 60%;
+            left: 25%;
+            animation-delay: 1s;
+        }
+        #menu {
+            background: #1ACC2E;
+            background: linear-gradient(to bottom,  #7CFC00,  #006400);
+            height: 45px;
+            border-radius: 50px;
+        }
+        #menu ul, #menu li {
+            margin: 0 auto;
+            padding: 0;
+            list-style: none
+        }
+        #menu ul {
+            width: 100%;
+            text-align: center;
+        }
+        #menu li {
+            display: inline-block;
+            position: relative;
+        }
+        #menu a {
+            display: block;
+            line-height: 45px;
+            padding: 0 14px;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+        #menu a.dropdown-arrow:after {
+            content: "\25BE";
+            margin-left: 5px;
+        }
+        #menu li a:hover {
+            color: #0099CC;
+            background: #F2F2F2;
+        }
+        #menu input {
+            display: none;
+            margin: 0;
+            padding: 0;
+            height: 45px;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer
+        }
+        #menu label {
+            display: none;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 35px
+        }
+        #menu label:before {
+            font-size: 1.6em;
+            color: #FFFFFF;
+            content: "\2261";
+            margin-left: 20px;
+        }
+        #menu ul.sub-menus{
+            height: auto;
+            overflow: hidden;
+            width: 170px;
+            background: #0E4413;
+            position: absolute;
+            z-index: 99;
+            display: none;
+        }
+        #menu ul.sub-menus li {
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+        #menu ul.sub-menus a {
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+        #menu li:hover ul.sub-menus {
+            display: block
+        }
+        #menu ul.sub-menus a:hover{
+            background: #F2F2F2;
+            color: #444444;
+        }
+        @media screen and (max-width: 800px){
+            #menu {position:relative}
+            #menu ul {background:#0E4413;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
+            #menu ul.sub-menus {width:100%;position:static;}
+            #menu ul.sub-menus a {padding-left:30px;}
+            #menu li {display:block;float:none;width:auto;}
+            #menu input, #menu label {position:absolute;top:0;left:0;display:block}
+            #menu input {z-index:4}
+            #menu input:checked + label {color:#FFFFFF}
+            #menu input:checked + label:before {content:"\00d7"}
+            #menu input:checked ~ ul {display:block}
+        }
+
+        header h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #006400; /* Темно-зеленый цвет для заголовка */
+        }
+
+        pre {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6;
+            background: #F8F8F8;
+            padding: 10px;
+            border-left: 5px solid #2E8B57;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+            background: #EEE;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6; /* Улучшаем читаемость */
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        main {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <!-- Логотип -->
+    <div class="logo">
+        <div class="crypto">Crypto</div>
+        <div class="training-app">Training App</div>
+    </div>
+
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+            <li><a href='home.html'>Головна</a></li>
+            <li><a class='dropdown-arrow' href='theory.html'>Теорія</a>
+                <ul class='sub-menus'>
+                    <li><a href='theory-aes.html'>AES (Advanced Encryption Standard)</a></li>
+                    <li><a href='theory-rsa.html'>RSA (Rivest-Shamir-Adleman)</a></li>
+                    <li><a href='theory-sha256.html'>SHA-256 (Secure Hash Algorithm)</a></li>
+                    <li><a href='theory-vigenere.html'>Шифр Віжинера</a></li>
+                </ul>
+            </li>
+            <li><a class='dropdown-arrow' href='practice.html'>Практика</a>
+                <ul class='sub-menus'>
+                    <li><a href='practice-aes.html'>AES (Advanced Encryption Standard)</a></li>
+                    <li><a href='practice-rsa.html'>RSA (Rivest-Shamir-Adleman)</a></li>
+                    <li><a href='practice-sha256.html'>SHA-256 (Secure Hash Algorithm) </a></li>
+                    <li><a href='practice-vigenere.html'>Шифр Віженера</a></li>
+                </ul>
+            </li>
+            <li><a class='dropdown-arrow' href='testing.html'>Тестування</a>
+                <ul class='sub-menus'>
+                    <li><a href='testing-aes.html'>тестування по AES</a></li>
+                    <li><a href='testing-rsa.html'>тестування по RSA</a></li>
+                    <li><a href='testing-sha256.html'>тестування по SHA-256</a></li>
+                    <li><a href='testing-vigenere.html'>тестування по Шифру Віженера</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Кнопка перемикання теми -->
+    <div id="themeToggle" class="switch">
+        <div class="toggle-icon"></div>
+        <div class="cloud"></div>
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
+</div>
+
+<header>
+    <h1>RSA (Rivest–Shamir–Adleman)</h1>
+</header>
+<main>
+    <section class="section">
+        <h2>1. Теорія RSA</h2>
+        <p>
+            RSA є одним із найпоширеніших алгоритмів асиметричного шифрування.
+            Його було створено Рональдом Рівестом, Аді Шаміром та Леонардом Адлеманом у 1977
+            році. RSA базується на математичній складності факторизації великих чисел,
+            що робить його стійким до багатьох атак. Основні етапи роботи RSA:
+        <ul>
+            <li>Генерація ключів: створюється пара ключів — публічний (для шифрування) та приватний (для розшифрування).</li>
+            <li>Шифрування: відкритий текст перетворюється в шифротекст за допомогою публічного ключа.</li>
+            <li>Розшифрування: шифротекст відновлюється у відкритий текст за допомогою приватного ключа.</li>
+        </ul>
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Переваги RSA</h2>
+        <ul>
+            <li>Асиметричність: не вимагає попередньої передачі ключа між сторонами.</li>
+            <li>Безпека: стійкість до атак, якщо використовуються довгі ключі.</li>
+            <li>Широке використання: використовується для цифрових підписів, обміну ключами тощо.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>3. Недоліки RSA</h2>
+        <ul>
+            <li>Швидкодія: алгоритм значно повільніший за симетричні шифри.</li>
+            <li>Великі ключі: вимагає більше пам’яті для зберігання ключів.</li>
+            <li>алежність від випадковості: потребує якісних генераторів випадкових чисел.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>4. Алгоритм RSA</h2>
+        <p>
+            Основні кроки алгоритму:
+        </p>
+        <ol>
+            <li>Вибір двох простих чисел (p і q) та обчислення n = p ⋅ q.</li>
+            <li>Обчислення функції Ейлера: 𝜙(𝑛)= (𝑝 − 1)(𝑞 − 1).</li>
+            <li>Вибір відкритого ключа e: число, що є взаємно простим із 𝜙(𝑛) .</li>
+            <li>Обчислення приватного ключа d: 𝑑 ⋅ 𝑒 ≡ 1 (mod 𝜙(n)).</li>
+            <li>Шифрування: C = M<sup>e</sup> (mod n).</li>
+            <li>Розшифрування: M = C<sup>d</sup> (mod n).</li>
+        </ol>
+    </section>
+
+    <section class="section">
+        <h2>5. Реалізація RSA на Java</h2>
+        <pre>
+<code>
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class RSA {
+    private BigInteger primeP, primeQ, n, phi, e, d;
+    private final int maxLength = 1024;
+    private final SecureRandom random = new SecureRandom();
+
+    public void generateKeys() {
+        primeP = BigInteger.probablePrime(maxLength, random);
+        primeQ = BigInteger.probablePrime(maxLength, random);
+        n = primeP.multiply(primeQ);
+        phi = primeP.subtract(BigInteger.ONE).multiply(primeQ.subtract(BigInteger.ONE));
+        e = BigInteger.probablePrime(maxLength / 2, random);
+        while (phi.gcd(e).compareTo(BigInteger.ONE) != 0) {
+            e = BigInteger.probablePrime(maxLength / 2, random);
+        }
+        d = e.modInverse(phi);
+    }
+
+    public byte[] encrypt(byte[] message) {
+        return (new BigInteger(message)).modPow(e, n).toByteArray();
+    }
+
+    public byte[] decrypt(byte[] encryptedMessage) {
+        return (new BigInteger(encryptedMessage)).modPow(d, n).toByteArray();
+    }
+
+    public static void main(String[] args) throws Exception {
+        RSA rsa = new RSA();
+        rsa.generateKeys();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Введіть текст: ");
+        String plainText = reader.readLine();
+
+        byte[] encrypted = rsa.encrypt(plainText.getBytes());
+        System.out.println("Зашифрований текст: " + new String(encrypted));
+
+        byte[] decrypted = rsa.decrypt(encrypted);
+        System.out.println("Розшифрований текст: " + new String(decrypted));
+    }
+}
+</code>
+            </pre>
+    </section>
+</main>
+
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Перевірка збереженої теми при завантаженні сторінки
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    }
+
+    // Обробник кліку для перемикання теми
+    themeToggle.addEventListener('click', () => {
+        const newTheme = body.classList.contains('night') ? 'day' : 'night'; // Змінюємо тему
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme); // Зберігаємо вибір у localStorage
+    });
+
+    function applyTheme(theme) {
+        const preElements = document.querySelectorAll('pre');
+        const codeElements = document.querySelectorAll('code');
+
+        if (theme === 'night') {
+            body.classList.add('night');
+            body.style.backgroundColor = '#2F4F4F'; // DarkSlateGray
+            body.style.color = '#F5FFFA'; // MintCream
+            document.querySelectorAll('h3').forEach(el => el.style.color = '#98FB98'); // PaleGreen
+            document.querySelectorAll('h2').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#4B4B4B'; // Darker background for night theme
+                el.style.borderLeftColor = '#90EE90'; // Change border color to match night theme
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#666'; // Darker background for code in night theme
+                el.style.color = '#FFF'; // Light text color
+            });
+
+            themeToggle.classList.add('night'); // Нічна тема для кнопки
+            themeToggle.style.backgroundColor = 'rgba(255, 255, 255, 0.14)';
+            themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(34px)';
+            themeToggle.querySelector('.toggle-icon').style.backgroundColor = 'white';
+            themeToggle.querySelector('.cloud').style.opacity = '0';
+            themeToggle.querySelector('.stars').style.display = 'block';
+        } else {
+            body.classList.remove('night');
+            body.style.backgroundColor = '#F5F5DC'; // Beige
+            body.style.color = '#000000'; // Black
+            document.querySelectorAll('h3').forEach(el => el.style.color = '#6B8E23'); // DarkOliveGreen
+            document.querySelectorAll('h2').forEach(el => el.style.color = '#808000'); // Olive
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#808000'); // Olive
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#F8F8F8'; // Light background for day theme
+                el.style.borderLeftColor = '#2E8B57'; // Original green border
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#EEE'; // Light background for code in day theme
+                el.style.color = '#000'; // Dark text color
+            });
+
+            themeToggle.classList.remove('night'); // Денна тема для кнопки
+            themeToggle.style.backgroundColor = '#2196F3';
+            themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(0px)';
+            themeToggle.querySelector('.toggle-icon').style.backgroundColor = 'yellow';
+            themeToggle.querySelector('.cloud').style.opacity = '1';
+            themeToggle.querySelector('.stars').style.display = 'none';
+        }
+    }
+
+
+
+    function updatemenu() {
+        if (document.getElementById('responsive-menu').checked == true) {
+            document.getElementById('menu').style.borderBottomRightRadius = '0';
+            document.getElementById('menu').style.borderBottomLeftRadius = '0';
+        }else{
+            document.getElementById('menu').style.borderRadius = '50px';
+        }
+    }
+
+
+</script>
+</body>
+</html>
