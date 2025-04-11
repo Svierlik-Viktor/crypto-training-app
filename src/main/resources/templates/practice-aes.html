@@ -403,6 +403,12 @@
 
         <label for="keyInput">Введіть ключ (довжина 16 символів):</label>
         <input id="keyInput" type="text" maxlength="16" placeholder="Наприклад: mySecretKey12345">
+        <br>
+
+        <!-- Генерація IV
+        <<label for="ivInput">IV:</label>
+        <input type="text" id="ivInput" disabled placeholder="IV генерується автоматично">
+        <br>-->
 
         <button id="encryptBtn">Зашифрувати</button>
         <button id="decryptBtn">Розшифрувати</button>
@@ -506,10 +512,6 @@
         }
     }
 
-
-
-
-
     function updatemenu() {
         if (document.getElementById('responsive-menu').checked == true) {
             document.getElementById('menu').style.borderBottomRightRadius = '0';
@@ -519,7 +521,13 @@
         }
     }
 
-    // Функції для роботи AES
+    // Генерація випадкового IV (16 байт)
+    function generateIV() {
+        const iv = crypto.getRandomValues(new Uint8Array(16));
+        return Array.from(iv).map(byte => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Функція шифрування
     async function encryptText(text, key) {
         const encoder = new TextEncoder();
         const data = encoder.encode(text);
@@ -531,11 +539,16 @@
             ["encrypt"]
         );
 
-        const iv = crypto.getRandomValues(new Uint8Array(16));
+        const iv = generateIV(); // Генерація IV
+        const ivArray = new Uint8Array(16);
+        for (let i = 0; i < iv.length; i += 2) {
+            ivArray[i / 2] = parseInt(iv.substr(i, 2), 16);
+        }
+
         const encryptedData = await crypto.subtle.encrypt(
             {
                 name: "AES-CBC",
-                iv: iv,
+                iv: ivArray,
             },
             keyMaterial,
             data
@@ -543,10 +556,11 @@
 
         return {
             encrypted: btoa(String.fromCharCode(...new Uint8Array(encryptedData))),
-            iv: Array.from(iv).join(","),
+            iv: iv, // Повертаємо згенерований IV
         };
     }
 
+    // Функція розшифрування
     async function decryptText(encrypted, key, iv) {
         const encoder = new TextEncoder();
         const data = new Uint8Array(
@@ -562,10 +576,15 @@
             ["decrypt"]
         );
 
+        const ivArray = new Uint8Array(16);
+        for (let i = 0; i < iv.length; i += 2) {
+            ivArray[i / 2] = parseInt(iv.substr(i, 2), 16);
+        }
+
         const decryptedData = await crypto.subtle.decrypt(
             {
                 name: "AES-CBC",
-                iv: new Uint8Array(iv.split(",").map(Number)),
+                iv: ivArray,
             },
             keyMaterial,
             data
@@ -574,36 +593,61 @@
         return new TextDecoder().decode(decryptedData);
     }
 
-    // Обробники подій
+    // Обробник події для кнопки "Зашифрувати"
     document.getElementById("encryptBtn").addEventListener("click", async () => {
-        const text = document.getElementById("textInput").value;
-        const key = document.getElementById("keyInput").value;
+        const text = document.getElementById("textInput").value;  // Введений текст
+        const key = document.getElementById("keyInput").value;    // Ключ
 
+        // Перевірка довжини ключа
         if (key.length !== 16) {
             alert("Ключ має бути довжиною 16 символів!");
             return;
         }
 
         try {
+            // Шифрування
             const { encrypted, iv } = await encryptText(text, key);
+
+            // Виведення результату (зашифрований текст + IV)
             document.getElementById("result").innerText = `Зашифрований текст: ${encrypted}\nIV: ${iv}`;
+
+            // Збереження результату в текстове поле для розшифрування
+            document.getElementById("textInput").value = `${encrypted}\n${iv}`;
         } catch (error) {
             console.error("Помилка шифрування:", error);
             alert("Сталася помилка під час шифрування.");
         }
     });
 
+    // Обробник події для кнопки "Розшифрувати"
     document.getElementById("decryptBtn").addEventListener("click", async () => {
-        const encrypted = prompt("Введіть зашифрований текст:");
-        const iv = prompt("Введіть IV (згенерований під час шифрування):");
-        const key = document.getElementById("keyInput").value;
+        const encryptedWithIv = document.getElementById("textInput").value;  // Текст з поля введення для розшифрування
+        const key = document.getElementById("keyInput").value;  // Ключ
 
+        // Перевірка, чи введено зашифрований текст
+        if (!encryptedWithIv) {
+            alert("Введіть зашифрований текст для розшифрування!");
+            return;
+        }
+
+        // Перевірка довжини ключа
         if (key.length !== 16) {
             alert("Ключ має бути довжиною 16 символів!");
             return;
         }
 
         try {
+            // Розділення зашифрованого тексту і IV
+            const parts = encryptedWithIv.split('\n'); // Розділяємо зашифрований текст і IV по новому рядку
+            const encrypted = parts[0];
+            const iv = parts[1];
+
+            if (!iv) {
+                alert("Не вказано IV!");
+                return;
+            }
+
+            // Розшифрування
             const decrypted = await decryptText(encrypted, key, iv);
             document.getElementById("result").innerText = `Розшифрований текст: ${decrypted}`;
         } catch (error) {
