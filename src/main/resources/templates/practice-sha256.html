@@ -500,10 +500,6 @@
         }
     }
 
-
-
-
-
     function updatemenu() {
         if (document.getElementById('responsive-menu').checked == true) {
             document.getElementById('menu').style.borderBottomRightRadius = '0';
@@ -524,20 +520,32 @@
     }
 
     // Обробник події для кнопки "Створити хеш"
-    document.getElementById("hashBtn").addEventListener("click", async () => {
-        const text = document.getElementById("textInput").value;
+    document.getElementById('hashBtn').addEventListener('click', async () => {
+        const inputText = document.getElementById('textInput').value;
+        const resultDiv = document.getElementById('result');
 
-        if (!text) {
-            alert("Будь ласка, введіть текст для хешування!");
+        if (!inputText.trim()) {
+            resultDiv.textContent = 'Будь ласка, введіть текст для хешування.';
             return;
         }
 
         try {
-            const hash = await hashText(text);
-            document.getElementById("result").innerText = `Хешований текст (SHA-256): ${hash}`;
+            const response = await fetch('http://localhost:8080/api/crypto/sha256', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+                body: inputText
+            });
+
+            if (!response.ok) {
+                throw new Error('Помилка при запиті до сервера');
+            }
+
+            const hash = await response.text();
+            resultDiv.textContent = hash;
         } catch (error) {
-            console.error("Помилка хешування:", error);
-            alert("Сталася помилка під час хешування.");
+            resultDiv.textContent = 'Сталася помилка: ' + error.message;
         }
     });
 </script>
