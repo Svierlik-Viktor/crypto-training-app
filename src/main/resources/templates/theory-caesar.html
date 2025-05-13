@@ -332,86 +332,41 @@
             color: #ffffff;
         }
 
-        /* Секція теорії */
-        .theory-section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .theory-button {
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        .theory-wrapper {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .theory-category {
-            background-color: #f0f8f0;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-        }
-
-        .theory-category h2 {
+        header h1 {
             text-align: center;
-            color: #2E8B57;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: #006400; /* Темно-зеленый цвет для заголовка */
         }
 
-        .theory-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        pre {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6;
+            background: #F8F8F8;
+            padding: 10px;
+            border-left: 5px solid #2E8B57;
+            overflow-x: auto;
         }
 
-        .theory-button {
-            padding: 12px 18px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
+        code {
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+            background: #EEE;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
 
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
+        ul {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6; /* Улучшаем читаемость */
         }
 
-        body.night .theory-category {
-            background-color: #3a4b3a;
-            color: #f0f8ff;
+        .section {
+            margin-bottom: 30px;
+        }
+
+        main {
+            padding: 10px;
         }
 
     </style>
@@ -551,38 +506,101 @@
     </div>
 </div>
 
-<!-- Секція теорії (категорії) -->
-<div class="theory-wrapper">
-    <div class="theory-category">
-        <h2>Класичні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-caesar'">Шифр Цезаря</button>
-            <button class="theory-button" onclick="location.href='/theory-vigenere'">Віженера</button>
-            <button class="theory-button" onclick="location.href='/theory-columnar'">Перестановка</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Симетричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-aes'">AES</button>
-            <button class="theory-button" onclick="location.href='/theory-tripledes'">Triple DES</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Асиметричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-rsa'">RSA</button>
-            <button class="theory-button" onclick="location.href='/theory-ecdsa'">ECDSA</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Хешування</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-md5'">MD5</button>
-            <button class="theory-button" onclick="location.href='/theory-sha256'">SHA-256</button>
-        </div>
-    </div>
-</div>
+<header>
+    <h1>Шифр Цезаря (Caesar Cipher)</h1>
+</header>
+<main>
+    <section class="section">
+        <h2>1. Теорія шифру Цезаря</h2>
+        <p>
+            Шифр Цезаря — це один з найпростіших та найвідоміших методів симетричного шифрування, який полягає у зсуві кожної літери в алфавіті на певну кількість позицій.
+            Названий на честь Юлія Цезаря, який використовував його для захисту військових повідомлень.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Переваги шифру Цезаря</h2>
+        <ul>
+            <li>Простота реалізації та розуміння.</li>
+            <li>Підходить для навчальних цілей.</li>
+            <li>Не вимагає складних обчислень.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>3. Недоліки шифру Цезаря</h2>
+        <ul>
+            <li>Низька криптостійкість: лише 25 можливих ключів для латинського алфавіту.</li>
+            <li>Легко піддається атаці повного перебору (brute-force).</li>
+            <li>Непридатний для захисту реальної інформації в сучасних умовах.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>4. Формула шифрування та дешифрування</h2>
+        <ul>
+            <li><b>Шифрування:</b> C = (P + K) mod 26</li>
+            <li><b>Дешифрування:</b> P = (C - K + 26) mod 26</li>
+            <li>де P — позиція літери у відкритому тексті, C — позиція літери у шифротексті, K — ключ (зсув).</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>5. Кроки алгоритму шифру Цезаря</h2>
+        <ol>
+            <li>Обрати ключ (зсув) — ціле число від 1 до 25.</li>
+            <li>Пройтися по кожному символу вхідного тексту.</li>
+            <li>Якщо символ є літерою:
+                <ul>
+                    <li>Визначити її позицію в алфавіті (0–25).</li>
+                    <li>Додати значення зсуву (ключа).</li>
+                    <li>Застосувати операцію <code>mod 26</code>, щоб залишитися в межах алфавіту.</li>
+                    <li>Замінити оригінальну літеру на нову зашифровану.</li>
+                </ul>
+            </li>
+            <li>Інші символи (цифри, пробіли, пунктуація) залишаються без змін (опціонально).</li>
+            <li>Об’єднати всі символи у фінальний шифротекст.</li>
+        </ol>
+    </section>
+
+
+    <section class="section">
+        <h2>6. Реалізація шифру Цезаря на Java</h2>
+        <pre><code>
+public class CaesarCipher {
+    public static String encrypt(String text, int shift) {
+        StringBuilder result = new StringBuilder();
+        shift = shift % 26;
+        for (char c : text.toCharArray()) {
+            if (Character.isLetter(c)) {
+                char base = Character.isUpperCase(c) ? 'A' : 'a';
+                char shifted = (char) ((c - base + shift) % 26 + base);
+                result.append(shifted);
+            } else {
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
+
+    public static String decrypt(String text, int shift) {
+        return encrypt(text, 26 - shift % 26);
+    }
+
+    public static void main(String[] args) {
+        String message = "HELLO";
+        int key = 3;
+        String encrypted = encrypt(message, key);
+        String decrypted = decrypt(encrypted, key);
+
+        System.out.println("Original: " + message);
+        System.out.println("Encrypted: " + encrypted);
+        System.out.println("Decrypted: " + decrypted);
+    }
+}
+        </code></pre>
+    </section>
+</main>
 
 <script>
     const themeToggle = document.getElementById('themeToggle');
@@ -601,14 +619,28 @@
         localStorage.setItem('theme', newTheme); // Зберігаємо вибір у localStorage
     });
 
-    // Функція застосування теми
     function applyTheme(theme) {
+        const preElements = document.querySelectorAll('pre');
+        const codeElements = document.querySelectorAll('code');
+
         if (theme === 'night') {
             body.classList.add('night');
             body.style.backgroundColor = '#2F4F4F'; // DarkSlateGray
             body.style.color = '#F5FFFA'; // MintCream
             document.querySelectorAll('h3').forEach(el => el.style.color = '#98FB98'); // PaleGreen
             document.querySelectorAll('h2').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#4B4B4B'; // Darker background for night theme
+                el.style.borderLeftColor = '#90EE90'; // Change border color to match night theme
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#666'; // Darker background for code in night theme
+                el.style.color = '#FFF'; // Light text color
+            });
+
             themeToggle.classList.add('night'); // Нічна тема для кнопки
             themeToggle.style.backgroundColor = 'rgba(255, 255, 255, 0.14)';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(34px)';
@@ -621,6 +653,18 @@
             body.style.color = '#000000'; // Black
             document.querySelectorAll('h3').forEach(el => el.style.color = '#6B8E23'); // DarkOliveGreen
             document.querySelectorAll('h2').forEach(el => el.style.color = '#808000'); // Olive
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#808000'); // Olive
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#F8F8F8'; // Light background for day theme
+                el.style.borderLeftColor = '#2E8B57'; // Original green border
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#EEE'; // Light background for code in day theme
+                el.style.color = '#000'; // Dark text color
+            });
+
             themeToggle.classList.remove('night'); // Денна тема для кнопки
             themeToggle.style.backgroundColor = '#2196F3';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(0px)';
@@ -630,7 +674,6 @@
         }
     }
 
-
     function updatemenu() {
         if (document.getElementById('responsive-menu').checked == true) {
             document.getElementById('menu').style.borderBottomRightRadius = '0';
@@ -639,7 +682,6 @@
             document.getElementById('menu').style.borderRadius = '50px';
         }
     }
-
 
 </script>
 </body>

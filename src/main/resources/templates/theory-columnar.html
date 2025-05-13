@@ -332,86 +332,41 @@
             color: #ffffff;
         }
 
-        /* Секція теорії */
-        .theory-section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .theory-button {
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        .theory-wrapper {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .theory-category {
-            background-color: #f0f8f0;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-        }
-
-        .theory-category h2 {
+        header h1 {
             text-align: center;
-            color: #2E8B57;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: #006400; /* Темно-зеленый цвет для заголовка */
         }
 
-        .theory-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        pre {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6;
+            background: #F8F8F8;
+            padding: 10px;
+            border-left: 5px solid #2E8B57;
+            overflow-x: auto;
         }
 
-        .theory-button {
-            padding: 12px 18px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
+        code {
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+            background: #EEE;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
 
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
+        ul {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6; /* Улучшаем читаемость */
         }
 
-        body.night .theory-category {
-            background-color: #3a4b3a;
-            color: #f0f8ff;
+        .section {
+            margin-bottom: 30px;
+        }
+
+        main {
+            padding: 10px;
         }
 
     </style>
@@ -551,38 +506,141 @@
     </div>
 </div>
 
-<!-- Секція теорії (категорії) -->
-<div class="theory-wrapper">
-    <div class="theory-category">
-        <h2>Класичні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-caesar'">Шифр Цезаря</button>
-            <button class="theory-button" onclick="location.href='/theory-vigenere'">Віженера</button>
-            <button class="theory-button" onclick="location.href='/theory-columnar'">Перестановка</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Симетричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-aes'">AES</button>
-            <button class="theory-button" onclick="location.href='/theory-tripledes'">Triple DES</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Асиметричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-rsa'">RSA</button>
-            <button class="theory-button" onclick="location.href='/theory-ecdsa'">ECDSA</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Хешування</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-md5'">MD5</button>
-            <button class="theory-button" onclick="location.href='/theory-sha256'">SHA-256</button>
-        </div>
-    </div>
-</div>
+<header>
+    <h1>Шифр колонної перестановки</h1>
+</header>
+<main>
+    <section class="section">
+        <h2>1. Теорія шифру колонної перестановки</h2>
+        <p>
+            Шифр колонної перестановки — це класичний метод симетричного шифрування, який базується на зміні порядку символів у повідомленні
+            за допомогою перестановки стовпців таблиці. Відправник і отримувач мають спільний ключ — порядок стовпців.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Переваги</h2>
+        <ul>
+            <li>Простота реалізації.</li>
+            <li>Добре ілюструє принцип перестановки.</li>
+            <li>Може комбінуватись з іншими методами для більшої криптостійкості.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>3. Недоліки</h2>
+        <ul>
+            <li>Уразливий до частотного аналізу.</li>
+            <li>Низький рівень криптостійкості без додаткових методів.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>4. Кроки алгоритму</h2>
+        <ol>
+            <li>Обрати ключ — перестановку стовпців (наприклад, "3142").</li>
+            <li>Записати відкритий текст у таблицю рядками по кількості символів ключа.</li>
+            <li>Заповнити останній рядок при необхідності пробілами чи заповнювачами.</li>
+            <li>Зчитати символи з таблиці стовпцями у порядку ключа для отримання шифрованого тексту.</li>
+            <li>Для розшифрування — зворотна операція.</li>
+        </ol>
+    </section>
+
+    <section class="section">
+        <h2>5. Реалізація на Java</h2>
+        <pre><code>
+import java.util.*;
+
+public class ColumnarCipher {
+
+    // Метод шифрування
+    public static String encrypt(String plaintext, String key) {
+        int columns = key.length();
+        int rows = (int) Math.ceil((double) plaintext.length() / columns);
+        char[][] matrix = new char[rows][columns];
+
+        // Заповнення таблиці
+        int index = 0;
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < columns; c++) {
+                if (index < plaintext.length()) {
+                    matrix[r][c] = plaintext.charAt(index++);
+                } else {
+                    matrix[r][c] = 'X'; // Заповнювач
+                }
+            }
+        }
+
+        // Визначення порядку стовпців
+        Integer[] order = getKeyOrder(key);
+
+        // Побудова шифрованого тексту
+        StringBuilder encrypted = new StringBuilder();
+        for (int colIndex : order) {
+            for (int r = 0; r < rows; r++) {
+                encrypted.append(matrix[r][colIndex]);
+            }
+        }
+        return encrypted.toString();
+    }
+
+    // Метод розшифрування
+    public static String decrypt(String ciphertext, String key) {
+        int columns = key.length();
+        int rows = (int) Math.ceil((double) ciphertext.length() / columns);
+        char[][] matrix = new char[rows][columns];
+
+        // Визначення порядку стовпців
+        Integer[] order = getKeyOrder(key);
+
+        // Заповнення таблиці шифротекстом за порядком стовпців
+        int index = 0;
+        for (int colIndex : order) {
+            for (int r = 0; r < rows; r++) {
+                if (index < ciphertext.length()) {
+                    matrix[r][colIndex] = ciphertext.charAt(index++);
+                }
+            }
+        }
+
+        // Побудова розшифрованого тексту
+        StringBuilder decrypted = new StringBuilder();
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < columns; c++) {
+                decrypted.append(matrix[r][c]);
+            }
+        }
+
+        return decrypted.toString().replaceAll("X+$", ""); // Видаляємо заповнювачі
+    }
+
+    // Повертає порядок стовпців згідно алфавітного сортування символів ключа
+    private static Integer[] getKeyOrder(String key) {
+        Character[] keyChars = new Character[key.length()];
+        for (int i = 0; i < key.length(); i++) keyChars[i] = key.charAt(i);
+
+        Integer[] order = new Integer[key.length()];
+        for (int i = 0; i < key.length(); i++) order[i] = i;
+
+        Arrays.sort(order, Comparator.comparingInt(i -> keyChars[i]));
+        return order;
+    }
+
+    // Приклад використання
+    public static void main(String[] args) {
+        String plaintext = "MEETMEATTHEPARK";
+        String key = "ZEBRAS";
+
+        String encrypted = encrypt(plaintext, key);
+        System.out.println("Зашифровано: " + encrypted);
+
+        String decrypted = decrypt(encrypted, key);
+        System.out.println("Розшифровано: " + decrypted);
+    }
+}
+        </code></pre>
+    </section>
+</main>
 
 <script>
     const themeToggle = document.getElementById('themeToggle');
@@ -601,14 +659,28 @@
         localStorage.setItem('theme', newTheme); // Зберігаємо вибір у localStorage
     });
 
-    // Функція застосування теми
     function applyTheme(theme) {
+        const preElements = document.querySelectorAll('pre');
+        const codeElements = document.querySelectorAll('code');
+
         if (theme === 'night') {
             body.classList.add('night');
             body.style.backgroundColor = '#2F4F4F'; // DarkSlateGray
             body.style.color = '#F5FFFA'; // MintCream
             document.querySelectorAll('h3').forEach(el => el.style.color = '#98FB98'); // PaleGreen
             document.querySelectorAll('h2').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#4B4B4B'; // Darker background for night theme
+                el.style.borderLeftColor = '#90EE90'; // Change border color to match night theme
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#666'; // Darker background for code in night theme
+                el.style.color = '#FFF'; // Light text color
+            });
+
             themeToggle.classList.add('night'); // Нічна тема для кнопки
             themeToggle.style.backgroundColor = 'rgba(255, 255, 255, 0.14)';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(34px)';
@@ -621,6 +693,18 @@
             body.style.color = '#000000'; // Black
             document.querySelectorAll('h3').forEach(el => el.style.color = '#6B8E23'); // DarkOliveGreen
             document.querySelectorAll('h2').forEach(el => el.style.color = '#808000'); // Olive
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#808000'); // Olive
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#F8F8F8'; // Light background for day theme
+                el.style.borderLeftColor = '#2E8B57'; // Original green border
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#EEE'; // Light background for code in day theme
+                el.style.color = '#000'; // Dark text color
+            });
+
             themeToggle.classList.remove('night'); // Денна тема для кнопки
             themeToggle.style.backgroundColor = '#2196F3';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(0px)';
@@ -630,7 +714,6 @@
         }
     }
 
-
     function updatemenu() {
         if (document.getElementById('responsive-menu').checked == true) {
             document.getElementById('menu').style.borderBottomRightRadius = '0';
@@ -639,7 +722,6 @@
             document.getElementById('menu').style.borderRadius = '50px';
         }
     }
-
 
 </script>
 </body>

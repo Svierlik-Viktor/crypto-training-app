@@ -331,89 +331,58 @@
             background-color: #2E8B57;
             color: #ffffff;
         }
-
-        /* Секція теорії */
-        .theory-section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
         }
 
-        .theory-button {
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        .theory-wrapper {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .theory-category {
-            background-color: #f0f8f0;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-        }
-
-        .theory-category h2 {
+        h1 {
             text-align: center;
-            color: #2E8B57;
-            margin-bottom: 15px;
         }
 
-        .theory-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        .entry {
+            background-color: #f4f4f4;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
         }
 
-        .theory-button {
-            padding: 12px 18px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
+        .entry pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            color: #000;
         }
 
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        body.night .theory-category {
+        body.night .entry pre {
             background-color: #3a4b3a;
-            color: #f0f8ff;
+            color: #F5FFFA; /* Текст світлий */
+            border-color: #777;
         }
 
+
+        .btn-clear {
+            background-color: #c0392b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .btn-clear:hover {
+            background-color: #e74c3c;
+        }
+
+        .timestamp {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -551,38 +520,12 @@
     </div>
 </div>
 
-<!-- Секція теорії (категорії) -->
-<div class="theory-wrapper">
-    <div class="theory-category">
-        <h2>Класичні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-caesar'">Шифр Цезаря</button>
-            <button class="theory-button" onclick="location.href='/theory-vigenere'">Віженера</button>
-            <button class="theory-button" onclick="location.href='/theory-columnar'">Перестановка</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Симетричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-aes'">AES</button>
-            <button class="theory-button" onclick="location.href='/theory-tripledes'">Triple DES</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Асиметричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-rsa'">RSA</button>
-            <button class="theory-button" onclick="location.href='/theory-ecdsa'">ECDSA</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Хешування</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-md5'">MD5</button>
-            <button class="theory-button" onclick="location.href='/theory-sha256'">SHA-256</button>
-        </div>
-    </div>
+<div class="container">
+    <h1>Збережені результати практики</h1>
+    <button class="btn-clear" onclick="clearResults()">Очистити все</button>
+    <div id="results-container"></div>
 </div>
+
 
 <script>
     const themeToggle = document.getElementById('themeToggle');
@@ -640,6 +583,48 @@
         }
     }
 
+    function loadResults() {
+        const container = document.getElementById("results-container");
+        const entries = JSON.parse(localStorage.getItem("cryptoPracticeResults")) || [];
+
+        container.innerHTML = ""; // очищення перед новим завантаженням
+
+        if (entries.length === 0) {
+            container.innerHTML = "<p>Немає збережених результатів.</p>";
+            return;
+        }
+
+        entries.reverse().forEach((entry, index) => {
+            const actualIndex = entries.length - 1 - index; // реальний індекс у сховищі
+            const div = document.createElement("div");
+            div.className = "entry";
+            div.innerHTML = `
+            <div class="timestamp">🕒 ${entry.timestamp}</div>
+            <pre><strong>Алгоритм:</strong> ${entry.algorithm}\n\n<strong>Вхідні дані:</strong> ${entry.input}\n<strong>Ключ:</strong> ${entry.key}\n<strong>Результат:</strong> ${entry.result}\n\n<strong>Пояснення:</strong>\n${entry.explanation}</pre>
+            <button onclick="deleteResult(${actualIndex})">Видалити</button>
+        `;
+            container.appendChild(div);
+        });
+    }
+
+    function deleteResult(index) {
+        const entries = JSON.parse(localStorage.getItem("cryptoPracticeResults")) || [];
+        if (index >= 0 && index < entries.length) {
+            entries.splice(index, 1);
+            localStorage.setItem("cryptoPracticeResults", JSON.stringify(entries));
+            loadResults();
+        }
+    }
+
+
+    function clearResults() {
+        if (confirm("Ви впевнені, що хочете видалити всі збережені результати?")) {
+            localStorage.removeItem("cryptoPracticeResults");
+            loadResults();
+        }
+    }
+
+    loadResults();
 
 </script>
 </body>

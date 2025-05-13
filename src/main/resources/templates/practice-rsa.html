@@ -14,7 +14,7 @@
         .logo .crypto {
             font-size: 36px;
             font-weight: bold;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
+            background: linear-gradient(to bottom, #00FF00, #32CD32);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -22,7 +22,7 @@
         .logo .training-app {
             font-size: 20px;
             font-weight: bold;
-            color: #006400;
+            color: #2cb82c;
         }
 
         /* Основний стиль сторінки */
@@ -30,7 +30,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: white;
+            background-color: #F5F5DC;
             color: black;
             transition: background-color 0.4s, color 0.4s;
         }
@@ -172,15 +172,18 @@
             animation-delay: 1s;
         }
         #menu {
-            background: #1ACC2E;
-            background: linear-gradient(to bottom,  #7CFC00,  #006400);
-            height: 45px;
+            background: linear-gradient(to bottom, #7CFC00, #006400);
+            height: 50px;
             border-radius: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         #menu ul, #menu li {
-            margin: 0 auto;
+            margin: 0;
             padding: 0;
-            list-style: none
+            list-style: none;
         }
         #menu ul {
             width: 100%;
@@ -192,19 +195,26 @@
         }
         #menu a {
             display: block;
-            line-height: 45px;
-            padding: 0 14px;
+            line-height: 50px;
+            padding: 0 20px;
             text-decoration: none;
             color: #FFFFFF;
-            font-size: 16px;
+            font-size: 17px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 25px;
         }
         #menu a.dropdown-arrow:after {
-            content: "\25BE";
-            margin-left: 5px;
+            content: "\25BE"; /* стрілка вниз */
+            margin-left: 8px;
+        }
+        #menu a.right-arrow:after {
+            content: "\25B8"; /* стрілка вправо */
+            margin-left: 8px;
         }
         #menu li a:hover {
-            color: #0099CC;
-            background: #F2F2F2;
+            color: #2E8B57;
+            background: #F0FFF0;
         }
         #menu input {
             display: none;
@@ -228,28 +238,51 @@
             content: "\2261";
             margin-left: 20px;
         }
-        #menu ul.sub-menus{
-            height: auto;
-            overflow: hidden;
-            width: 170px;
-            background: #0E4413;
+        #menu ul.sub-menus {
             position: absolute;
-            z-index: 99;
+            top: 100%;
+            left: 0;
+            background: #0E4413;
             display: none;
+            width: 170px;
+            z-index: 99;
         }
         #menu ul.sub-menus li {
-            display: block;
-            text-align: left;
-            width: 100%;
+            position: relative;
         }
         #menu ul.sub-menus a {
             color: #FFFFFF;
             font-size: 16px;
         }
-        #menu li:hover ul.sub-menus {
-            display: block
+        #menu ul.sub-sub-menus {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #0E4413;
+            display: none;
+            width: 170px;
+            z-index: 99;
+        }
+        #menu ul.sub-sub-menus li {
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+        #menu ul.sub-sub-menus a {
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+        #menu li:hover > ul.sub-menus {
+            display: block;
+        }
+        #menu ul.sub-menus li:hover > ul.sub-sub-menus {
+            display: block;
         }
         #menu ul.sub-menus a:hover{
+            background: #F2F2F2;
+            color: #444444;
+        }
+        #menu ul.sub-sub-menus a:hover{
             background: #F2F2F2;
             color: #444444;
         }
@@ -257,13 +290,46 @@
             #menu {position:relative}
             #menu ul {background:#0E4413;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
             #menu ul.sub-menus {width:100%;position:static;}
+            #menu ul.sub-sub-menus {width:100%;position:static;padding-left:20px;}
             #menu ul.sub-menus a {padding-left:30px;}
+            #menu ul.sub-sub-menus a {padding-left:50px;}
             #menu li {display:block;float:none;width:auto;}
             #menu input, #menu label {position:absolute;top:0;left:0;display:block}
             #menu input {z-index:4}
             #menu input:checked + label {color:#FFFFFF}
             #menu input:checked + label:before {content:"\00d7"}
             #menu input:checked ~ ul {display:block}
+        }
+
+        /* Секція актуальності */
+        #relevance {
+            padding: 10px;
+        }
+        #relevance h2 {
+            text-align: center;
+            color: #808000; /* Темно-зелений для денної теми */
+            transition: color 0.4s;
+        }
+        #relevance ol {
+            padding-left: 20px;
+        }
+        #relevance li h3 {
+            font-weight: bold;
+            color: #6B8E23; /* Темно-зелений для денної теми */
+            transition: color 0.4s;
+        }
+        #relevance p {
+            line-height: 1.6;
+        }
+        #menu ul.sub-menus a, #menu ul.sub-sub-menus a {
+            display: block;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        #menu ul.sub-menus a:hover, #menu ul.sub-sub-menus a:hover {
+            background-color: #2E8B57;
+            color: #ffffff;
         }
 
         header h1 {
@@ -284,7 +350,7 @@
 
         code {
             font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-            background: #EEE;
+
             padding: 2px 5px;
             border-radius: 3px;
         }
@@ -311,7 +377,7 @@
         }
 
         input, textarea, button {
-            width: 100%;
+            width: 98%;
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #CCC;
@@ -319,6 +385,7 @@
         }
 
         button {
+            width: 101%;
             background-color: #32CD32;
             color: #FFF;
             font-size: 16px;
@@ -351,34 +418,115 @@
     <nav id='menu'>
         <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
         <ul>
-            <li><a href='home.html'>Головна</a></li>
-            <li><a class='dropdown-arrow' href='theory.html'>Теорія</a>
+            <li><a th:href="@{/home}" class="menu-btn">Головна</a></li>
+
+            <li>
+                <a class='dropdown-arrow menu-btn' th:href="@{/theory}">Теорія</a>
                 <ul class='sub-menus'>
-                    <li><a href='theory-aes.html'>AES (Advanced Encryption Standard)</a></li>
-                    <li><a href='theory-rsa.html'>RSA (Rivest-Shamir-Adleman)</a></li>
-                    <li><a href='theory-sha256.html'>SHA-256 (Secure Hash Algorithm)</a></li>
-                    <li><a href='theory-vigenere.html'>Шифр Віжинера</a></li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Класичні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-caesar}" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a th:href="@{/theory-vigenere}" class="menu-btn">Віженера</a></li>
+                            <li><a th:href="@{/theory-columnar}" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Симетричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-aes}" class="menu-btn">AES</a></li>
+                            <li><a th:href="@{/theory-tripledes}" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Асиметричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-rsa}" class="menu-btn">RSA</a></li>
+                            <li><a th:href="@{/theory-ecdsa}" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Хешування</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-md5}" class="menu-btn">MD5</a></li>
+                            <li><a th:href="@{/theory-sha256}" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
-            <li><a class='dropdown-arrow' href='practice.html'>Практика</a>
+
+            <li>
+                <a class='dropdown-arrow menu-btn' th:href="@{/practice}">Практика</a>
                 <ul class='sub-menus'>
-                    <li><a href='practice-aes.html'>AES (Advanced Encryption Standard)</a></li>
-                    <li><a href='practice-rsa.html'>RSA (Rivest-Shamir-Adleman)</a></li>
-                    <li><a href='practice-sha256.html'>SHA-256 (Secure Hash Algorithm) </a></li>
-                    <li><a href='practice-vigenere.html'>Шифр Віженера</a></li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Класичні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-caesar}" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a th:href="@{/practice-vigenere}" class="menu-btn">Віженера</a></li>
+                            <li><a th:href="@{/practice-columnar}" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Симетричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-aes}" class="menu-btn">AES</a></li>
+                            <li><a th:href="@{/practice-tripledes}" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Асиметричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-rsa}" class="menu-btn">RSA</a></li>
+                            <li><a th:href="@{/practice-ecdsa}" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Хешування</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-md5}" class="menu-btn">MD5</a></li>
+                            <li><a th:href="@{/practice-sha256}" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
-            <li><a class='dropdown-arrow' href='testing.html'>Тестування</a>
+
+            <li>
+                <a class='dropdown-arrow menu-btn' th:href="@{/testing}">Тестування</a>
                 <ul class='sub-menus'>
-                    <li><a href='testing-aes.html'>тестування по AES</a></li>
-                    <li><a href='testing-rsa.html'>тестування по RSA</a></li>
-                    <li><a href='testing-sha256.html'>тестування по SHA-256</a></li>
-                    <li><a href='testing-vigenere.html'>тестування по Шифру Віженера</a></li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Класичні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-caesar}" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a th:href="@{/testing-vigenere}" class="menu-btn">Віженера</a></li>
+                            <li><a th:href="@{/testing-columnar}" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Симетричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-aes}" class="menu-btn">AES</a></li>
+                            <li><a th:href="@{/testing-tripledes}" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Асиметричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-rsa}" class="menu-btn">RSA</a></li>
+                            <li><a th:href="@{/testing-ecdsa}" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Хешування</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-md5}" class="menu-btn">MD5</a></li>
+                            <li><a th:href="@{/testing-sha256}" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
+            <li><a th:href="@{/history}" class="menu-btn">Історія практики</a></li>
         </ul>
     </nav>
-
     <!-- Кнопка перемикання теми -->
     <div id="themeToggle" class="switch">
         <div class="toggle-icon"></div>
@@ -400,13 +548,13 @@
     <button id="generateKeysBtn">Згенерувати ключі RSA</button>
 
     <label for="publicKey">Відкритий ключ:</label>
-    <textarea id="publicKey" rows="4" readonly></textarea>
+    <textarea id="publicKey" rows="5" readonly></textarea>
 
     <label for="privateKey">Приватний ключ:</label>
-    <textarea id="privateKey" rows="4" readonly></textarea>
+    <textarea id="privateKey" rows="5" readonly></textarea>
 
     <label for="textInput">Введіть текст:</label>
-    <textarea id="textInput" rows="3" placeholder="Введіть текст для шифрування"></textarea>
+    <textarea id="textInput" rows="3" placeholder="Введіть текст для шифрування або розшифрування"></textarea>
 
     <button id="encryptBtn">Зашифрувати</button>
     <button id="decryptBtn">Розшифрувати</button>
@@ -414,17 +562,12 @@
     <h3>Результат:</h3>
     <div id="result" class="result">Тут буде показано результат</div>
 </div>
-
 <script>
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
 
     // Перевірка збереженої теми при завантаженні сторінки
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    }
-
+    const savedTheme = localStorage.getItem('theme') || 'day'; applyTheme(savedTheme);
     // Обробник кліку для перемикання теми
     themeToggle.addEventListener('click', () => {
         const newTheme = body.classList.contains('night') ? 'day' : 'night'; // Змінюємо тему
@@ -509,10 +652,6 @@
         }
     }
 
-
-
-
-
     function updatemenu() {
         if (document.getElementById('responsive-menu').checked == true) {
             document.getElementById('menu').style.borderBottomRightRadius = '0';
@@ -522,101 +661,126 @@
         }
     }
 
-    let publicKey, privateKey;
-
-    // Генерація RSA ключів
-    async function generateKeys() {
-        const keyPair = await window.crypto.subtle.generateKey(
-            {
-                name: "RSA-OAEP",
-                modulusLength: 2048,
-                publicExponent: new Uint8Array([1, 0, 1]),
-                hash: "SHA-256",
-            },
-            true,
-            ["encrypt", "decrypt"]
-        );
-
-        publicKey = keyPair.publicKey;
-        privateKey = keyPair.privateKey;
-
-        const exportedPublicKey = await window.crypto.subtle.exportKey("spki", publicKey);
-        const exportedPrivateKey = await window.crypto.subtle.exportKey("pkcs8", privateKey);
-
-        document.getElementById("publicKey").value = btoa(String.fromCharCode(...new Uint8Array(exportedPublicKey)));
-        document.getElementById("privateKey").value = btoa(String.fromCharCode(...new Uint8Array(exportedPrivateKey)));
-    }
-
-    // Шифрування тексту
-    async function encryptText(text) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(text);
-
-        const encryptedData = await window.crypto.subtle.encrypt(
-            {
-                name: "RSA-OAEP",
-            },
-            publicKey,
-            data
-        );
-
-        return btoa(String.fromCharCode(...new Uint8Array(encryptedData)));
-    }
-
-    // Розшифрування тексту
-    async function decryptText(encrypted) {
-        const data = new Uint8Array(atob(encrypted).split("").map(char => char.charCodeAt(0)));
-
-        const decryptedData = await window.crypto.subtle.decrypt(
-            {
-                name: "RSA-OAEP",
-            },
-            privateKey,
-            data
-        );
-
-        return new TextDecoder().decode(decryptedData);
-    }
-
-    // Обробники подій
+    // Генерація ключів
     document.getElementById("generateKeysBtn").addEventListener("click", async () => {
-        await generateKeys();
-        document.getElementById("result").innerText = "Ключі згенеровано успішно.";
+        try {
+            const response = await fetch("/api/rsa/generate");
+            if (!response.ok) throw new Error("Помилка відповіді сервера");
+
+            const data = await response.json();
+            document.getElementById("publicKey").value = data.publicKey;
+            document.getElementById("privateKey").value = data.privateKey;
+            document.getElementById("result").innerHTML = "<b>Ключі згенеровано успішно.</b>";
+        } catch (error) {
+            console.error("Помилка генерації ключів:", error);
+            alert("Сталася помилка при генерації ключів.");
+        }
     });
 
     document.getElementById("encryptBtn").addEventListener("click", async () => {
         const text = document.getElementById("textInput").value;
+        const publicKey = document.getElementById("publicKey").value;
 
-        if (!publicKey) {
-            alert("Спочатку згенеруйте ключі!");
+        if (!text) {
+            alert("Введіть текст для шифрування!");
             return;
         }
 
         try {
-            const encrypted = await encryptText(text);
-            document.getElementById("result").innerText = `Зашифрований текст: ${encrypted}`;
+            const response = await fetch("/api/rsa/encrypt", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text })
+            });
+
+            if (!response.ok) throw new Error("Помилка відповіді сервера");
+
+            const htmlResult = await response.text();
+            document.getElementById("result").innerHTML = htmlResult;
+
+            const algorithm = "RSA";
+            const inputText = text;
+            const outputText = extractOutputFromHTML(htmlResult);
+            const explanation = htmlResult;
+
+            saveResult(algorithm, inputText, publicKey, outputText, explanation);
         } catch (error) {
             console.error("Помилка шифрування:", error);
-            alert("Сталася помилка під час шифрування.");
+            alert("Сталася помилка при шифруванні.");
         }
     });
 
     document.getElementById("decryptBtn").addEventListener("click", async () => {
-        const encrypted = prompt("Введіть зашифрований текст:");
+        const encryptedText = document.getElementById("textInput").value;
+        const privateKey = document.getElementById("privateKey").value;
 
-        if (!privateKey) {
-            alert("Спочатку згенеруйте ключі!");
+        if (!encryptedText) {
+            alert("Введіть зашифрований текст для розшифрування!");
             return;
         }
 
         try {
-            const decrypted = await decryptText(encrypted);
-            document.getElementById("result").innerText = `Розшифрований текст: ${decrypted}`;
+            const response = await fetch("/api/rsa/decrypt", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: encryptedText })
+            });
+
+            if (!response.ok) throw new Error("Помилка відповіді сервера");
+
+            const htmlResult = await response.text();
+            document.getElementById("result").innerHTML = htmlResult;
+
+            const algorithm = "RSA";
+            const inputText = encryptedText;
+            const outputText = extractOutputFromHTML(htmlResult);
+            const explanation = htmlResult;
+
+            saveResult(algorithm, inputText, privateKey, outputText, explanation);
         } catch (error) {
             console.error("Помилка розшифрування:", error);
-            alert("Сталася помилка під час розшифрування.");
+            alert("Сталася помилка при розшифруванні.");
         }
     });
+
+    function extractOutputFromHTML(html) {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+
+        const strongTags = tempDiv.querySelectorAll("strong");
+
+        for (const tag of strongTags) {
+            const labelText = tag.innerText.trim();
+
+            if (
+                labelText === "Зашифрований текст (Base64):" ||
+                labelText === "Розшифрований текст:"
+            ) {
+                // Пошук текстового вузла або наступного елемента
+                let next = tag.nextSibling;
+                while (next && next.nodeType !== Node.TEXT_NODE) {
+                    next = next.nextSibling;
+                }
+                return next ? next.textContent.trim() : "[Результат не знайдено]";
+            }
+        }
+
+        return "[Результат не знайдено]";
+    }
+
+    function saveResult(algorithm, input, key, result, explanation) {
+        const previous = JSON.parse(localStorage.getItem("cryptoPracticeResults")) || [];
+        const entry = {
+            algorithm,
+            input,
+            key,
+            result,
+            explanation,
+            timestamp: new Date().toLocaleString()
+        };
+        previous.push(entry);
+        localStorage.setItem("cryptoPracticeResults", JSON.stringify(previous));
+    }
 </script>
 </body>
 </html>

@@ -332,88 +332,48 @@
             color: #ffffff;
         }
 
-        /* Секція теорії */
-        .theory-section {
+        .container {
             max-width: 800px;
             margin: 20px auto;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
+            padding: 20px;
+            background-color: #FFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .theory-button {
-            padding: 15px 20px;
+        .question {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        label {
+            display: block;
+            padding: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #32CD32;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #228B22;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
             font-size: 18px;
             font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
         }
-
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        .theory-wrapper {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .theory-category {
-            background-color: #f0f8f0;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-        }
-
-        .theory-category h2 {
-            text-align: center;
-            color: #2E8B57;
-            margin-bottom: 15px;
-        }
-
-        .theory-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .theory-button {
-            padding: 12px 18px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        body.night .theory-category {
-            background-color: #3a4b3a;
-            color: #f0f8ff;
-        }
-
     </style>
 </head>
 <body>
@@ -551,42 +511,61 @@
     </div>
 </div>
 
-<!-- Секція теорії (категорії) -->
-<div class="theory-wrapper">
-    <div class="theory-category">
-        <h2>Класичні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-caesar'">Шифр Цезаря</button>
-            <button class="theory-button" onclick="location.href='/theory-vigenere'">Віженера</button>
-            <button class="theory-button" onclick="location.href='/theory-columnar'">Перестановка</button>
+<div class="container" id="testContainer">
+    <h1>Тестування шифру Цезаря</h1>
+
+    <form id="testForm">
+        <div class="question">
+            <p>1. Що таке шифр Цезаря?</p>
+            <label><input type="radio" name="q1" value="a"> Метод шифрування блоками по 128 біт</label>
+            <label><input type="radio" name="q1" value="b"> Асиметричний алгоритм шифрування</label>
+            <label><input type="radio" name="q1" value="c"> Проста підстановка, яка зміщує букви алфавіту</label>
+            <label><input type="radio" name="q1" value="d"> Хеш-функція</label>
         </div>
-    </div>
-    <div class="theory-category">
-        <h2>Симетричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-aes'">AES</button>
-            <button class="theory-button" onclick="location.href='/theory-tripledes'">Triple DES</button>
+
+        <div class="question">
+            <p>2. Хто ввів шифр Цезаря в історію криптографії?</p>
+            <label><input type="radio" name="q2" value="a"> Юлій Цезар</label>
+            <label><input type="radio" name="q2" value="b"> Аристотель</label>
+            <label><input type="radio" name="q2" value="c"> Алан Тюрінг</label>
+            <label><input type="radio" name="q2" value="d"> Едвард Сноуден</label>
         </div>
-    </div>
-    <div class="theory-category">
-        <h2>Асиметричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-rsa'">RSA</button>
-            <button class="theory-button" onclick="location.href='/theory-ecdsa'">ECDSA</button>
+
+        <div class="question">
+            <p>3. Який недолік має шифр Цезаря?</p>
+            <label><input type="radio" name="q3" value="a"> Велика складність реалізації</label>
+            <label><input type="radio" name="q3" value="b"> Надмірна кількість ключів</label>
+            <label><input type="radio" name="q3" value="c"> Легко зламати перебором</label>
+            <label><input type="radio" name="q3" value="d"> Використовує сучасні обчислення</label>
         </div>
-    </div>
-    <div class="theory-category">
-        <h2>Хешування</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-md5'">MD5</button>
-            <button class="theory-button" onclick="location.href='/theory-sha256'">SHA-256</button>
+
+        <div class="question">
+            <p>4. Яка кількість можливих ключів у шифрі Цезаря для латинського алфавіту?</p>
+            <label><input type="radio" name="q4" value="a"> 128</label>
+            <label><input type="radio" name="q4" value="b"> 26</label>
+            <label><input type="radio" name="q4" value="c"> 256</label>
+            <label><input type="radio" name="q4" value="d"> Безліч</label>
         </div>
-    </div>
+
+        <div class="question">
+            <p>5. Як працює шифрування в Цезаря?</p>
+            <label><input type="radio" name="q5" value="a"> XOR із ключем</label>
+            <label><input type="radio" name="q5" value="b"> Перестановка блоків</label>
+            <label><input type="radio" name="q5" value="c"> Зсув кожної літери на задану кількість позицій</label>
+            <label><input type="radio" name="q5" value="d"> Побітова інверсія</label>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Перевірити</button>
+    </form>
+
+    <div id="result">Результат буде показано тут</div>
 </div>
 
 <script>
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
+    const container = document.querySelector('.container');
+    const resultDiv = document.getElementById('result');
 
     // Перевірка збереженої теми при завантаженні сторінки
     const savedTheme = localStorage.getItem('theme');
@@ -605,10 +584,23 @@
     function applyTheme(theme) {
         if (theme === 'night') {
             body.classList.add('night');
-            body.style.backgroundColor = '#2F4F4F'; // DarkSlateGray
-            body.style.color = '#F5FFFA'; // MintCream
-            document.querySelectorAll('h3').forEach(el => el.style.color = '#98FB98'); // PaleGreen
-            document.querySelectorAll('h2').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+            body.style.backgroundColor = '#2F4F4F'; // Темний фон
+            body.style.color = '#F5FFFA'; // Світлий текст
+            document.querySelectorAll('h3').forEach(el => el.style.color = '#98FB98'); // Блідо-зелений заголовок
+            document.querySelectorAll('h2').forEach(el => el.style.color = '#90EE90'); // Блідо-зелений заголовок
+
+            // Темний режим для контейнера
+            if (container) {
+                container.style.backgroundColor = '#4B4B4B'; // Темно-сірий фон контейнера
+                container.style.color = '#F5FFFA'; // Світлий текст контейнера
+            }
+
+            // Темний режим для результату
+            if (resultDiv) {
+                resultDiv.style.backgroundColor = '#666'; // Темний фон
+                resultDiv.style.color = '#FFF'; // Білий текст
+            }
+
             themeToggle.classList.add('night'); // Нічна тема для кнопки
             themeToggle.style.backgroundColor = 'rgba(255, 255, 255, 0.14)';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(34px)';
@@ -617,10 +609,23 @@
             themeToggle.querySelector('.stars').style.display = 'block';
         } else {
             body.classList.remove('night');
-            body.style.backgroundColor = '#F5F5DC'; // Beige
-            body.style.color = '#000000'; // Black
-            document.querySelectorAll('h3').forEach(el => el.style.color = '#6B8E23'); // DarkOliveGreen
-            document.querySelectorAll('h2').forEach(el => el.style.color = '#808000'); // Olive
+            body.style.backgroundColor = '#F5F5DC'; // Бежевий фон
+            body.style.color = '#000000'; // Чорний текст
+            document.querySelectorAll('h3').forEach(el => el.style.color = '#6B8E23'); // Темно-оливковий
+            document.querySelectorAll('h2').forEach(el => el.style.color = '#808000'); // Оливковий
+
+            // Світлий режим для контейнера
+            if (container) {
+                container.style.backgroundColor = '#FFF'; // Білий фон контейнера
+                container.style.color = '#000'; // Чорний текст контейнера
+            }
+
+            // Світлий режим для результату
+            if (resultDiv) {
+                resultDiv.style.backgroundColor = '#F8F8F8'; // Світло-сірий фон
+                resultDiv.style.color = '#000'; // Чорний текст
+            }
+
             themeToggle.classList.remove('night'); // Денна тема для кнопки
             themeToggle.style.backgroundColor = '#2196F3';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(0px)';
@@ -629,6 +634,7 @@
             themeToggle.querySelector('.stars').style.display = 'none';
         }
     }
+
 
 
     function updatemenu() {
@@ -640,7 +646,31 @@
         }
     }
 
+    function checkAnswers() {
+        let correctAnswers = {
+            q1: "c",
+            q2: "a",
+            q3: "c",
+            q4: "b",
+            q5: "c"
+        };
 
+        let score = 0;
+        let totalQuestions = Object.keys(correctAnswers).length;
+
+        for (let question in correctAnswers) {
+            let selected = document.querySelector(`input[name="${question}"]:checked`);
+            if (selected && selected.value === correctAnswers[question]) {
+                score++;
+            }
+        }
+
+        let resultText = `Ваш результат: ${score} / ${totalQuestions}`;
+        let resultDiv = document.getElementById("result");
+        resultDiv.innerText = resultText;
+        resultDiv.style.backgroundColor = score >= 3 ? "#32CD32" : "#DC143C";
+        resultDiv.style.color = "white";
+    }
 </script>
 </body>
 </html>

@@ -332,87 +332,90 @@
             color: #ffffff;
         }
 
-        /* Секція теорії */
-        .theory-section {
+        header h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #006400; /* Темно-зеленый цвет для заголовка */
+        }
+
+        pre {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6;
+            background: #F8F8F8;
+            padding: 10px;
+            border-left: 5px solid #2E8B57;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 1.6; /* Улучшаем читаемость */
+        }
+
+        .container {
             max-width: 800px;
             margin: 20px auto;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .theory-button {
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
+            padding: 20px;
+            background-color: #FFF;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, button {
+            width: 98%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 101%;
+            background-color: #32CD32;
+            color: #FFF;
+            font-size: 16px;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        .theory-wrapper {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .theory-category {
-            background-color: #f0f8f0;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: background-color 0.3s;
         }
 
-        .theory-category h2 {
-            text-align: center;
-            color: #2E8B57;
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .step {
             margin-bottom: 15px;
+            padding: 10px;
+            border-left: 4px solid #2ecc71;
+
+        }
+        code {
+
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .button-group {
+            margin-top: 10px;
         }
 
-        .theory-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .theory-button {
-            padding: 12px 18px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(to bottom, #7CFC00, #006400);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .theory-button:hover {
-            background-color: #006400;
-            transform: translateY(-2px);
-        }
-
-        body.night .theory-category {
-            background-color: #3a4b3a;
-            color: #f0f8ff;
-        }
 
     </style>
 </head>
@@ -551,38 +554,25 @@
     </div>
 </div>
 
-<!-- Секція теорії (категорії) -->
-<div class="theory-wrapper">
-    <div class="theory-category">
-        <h2>Класичні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-caesar'">Шифр Цезаря</button>
-            <button class="theory-button" onclick="location.href='/theory-vigenere'">Віженера</button>
-            <button class="theory-button" onclick="location.href='/theory-columnar'">Перестановка</button>
-        </div>
+<div class="container">
+    <h1>Практика: Triple DES (3DES)</h1>
+    <p>Введіть текст і ключ для шифрування або розшифрування за допомогою алгоритму Triple DES.</p>
+
+    <label for="text">Текст:</label>
+    <textarea id="text" rows="3" placeholder="Введіть текст..."></textarea>
+
+    <label for="key">Ключ (24 символи):</label>
+    <input type="text" id="key" maxlength="24" placeholder="Наприклад: 1234567890ABCDEF12345678" />
+
+    <div class="button-group">
+        <button id="encryptBtn">Зашифрувати</button>
+        <button id="decryptBtn">Розшифрувати</button>
     </div>
-    <div class="theory-category">
-        <h2>Симетричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-aes'">AES</button>
-            <button class="theory-button" onclick="location.href='/theory-tripledes'">Triple DES</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Асиметричні</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-rsa'">RSA</button>
-            <button class="theory-button" onclick="location.href='/theory-ecdsa'">ECDSA</button>
-        </div>
-    </div>
-    <div class="theory-category">
-        <h2>Хешування</h2>
-        <div class="theory-buttons">
-            <button class="theory-button" onclick="location.href='/theory-md5'">MD5</button>
-            <button class="theory-button" onclick="location.href='/theory-sha256'">SHA-256</button>
-        </div>
-    </div>
+
+    <h3>Результат:</h3>
+    <div id="result" class="result">Тут буде показано результат</div>
 </div>
+
 
 <script>
     const themeToggle = document.getElementById('themeToggle');
@@ -601,14 +591,40 @@
         localStorage.setItem('theme', newTheme); // Зберігаємо вибір у localStorage
     });
 
-    // Функція застосування теми
     function applyTheme(theme) {
+        const preElements = document.querySelectorAll('pre');
+        const codeElements = document.querySelectorAll('code');
+        const container = document.querySelector('.container');
+        const result = document.getElementById('result'); // Блок result
+
         if (theme === 'night') {
             body.classList.add('night');
             body.style.backgroundColor = '#2F4F4F'; // DarkSlateGray
             body.style.color = '#F5FFFA'; // MintCream
             document.querySelectorAll('h3').forEach(el => el.style.color = '#98FB98'); // PaleGreen
             document.querySelectorAll('h2').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#90EE90'); // PaleGreen
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#4B4B4B'; // Darker background for night theme
+                el.style.borderLeftColor = '#90EE90'; // Change border color to match night theme
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#666'; // Darker background for code in night theme
+                el.style.color = '#FFF'; // Light text color
+            });
+
+            if (container) {
+                container.style.backgroundColor = '#4B4B4B'; // Darker background for container
+                container.style.color = '#F5FFFA'; // Light text color for container
+            }
+
+            if (result) {
+                result.style.backgroundColor = '#4B4B4B'; // Darker background for result block
+                result.style.color = '#F5FFFA'; // Light text color for result block
+            }
+
             themeToggle.classList.add('night'); // Нічна тема для кнопки
             themeToggle.style.backgroundColor = 'rgba(255, 255, 255, 0.14)';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(34px)';
@@ -621,6 +637,28 @@
             body.style.color = '#000000'; // Black
             document.querySelectorAll('h3').forEach(el => el.style.color = '#6B8E23'); // DarkOliveGreen
             document.querySelectorAll('h2').forEach(el => el.style.color = '#808000'); // Olive
+            document.querySelectorAll('h1').forEach(el => el.style.color = '#808000'); // Olive
+
+            preElements.forEach(el => {
+                el.style.backgroundColor = '#F8F8F8'; // Light background for day theme
+                el.style.borderLeftColor = '#2E8B57'; // Original green border
+            });
+
+            codeElements.forEach(el => {
+                el.style.backgroundColor = '#EEE'; // Light background for code in day theme
+                el.style.color = '#000'; // Dark text color
+            });
+
+            if (container) {
+                container.style.backgroundColor = '#FFF'; // Light background for container
+                container.style.color = '#000'; // Dark text color for container
+            }
+
+            if (result) {
+                result.style.backgroundColor = '#F8F8F8'; // Light background for result block
+                result.style.color = '#000000'; // Dark text color for result block
+            }
+
             themeToggle.classList.remove('night'); // Денна тема для кнопки
             themeToggle.style.backgroundColor = '#2196F3';
             themeToggle.querySelector('.toggle-icon').style.transform = 'translateX(0px)';
@@ -629,7 +667,6 @@
             themeToggle.querySelector('.stars').style.display = 'none';
         }
     }
-
 
     function updatemenu() {
         if (document.getElementById('responsive-menu').checked == true) {
@@ -640,7 +677,71 @@
         }
     }
 
+    async function processTripleDes(endpoint) {
+        const text = document.getElementById("text").value.trim();
+        const key = document.getElementById("key").value.trim();
 
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "Обробка...";
+
+        try {
+            const response = await fetch(`/api/tripledes/${endpoint}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text, key })
+            });
+
+            const content = await response.text();
+            resultDiv.innerHTML = content;
+
+            // ✅ Зберігаємо результат (результат міститься в content — це повний HTML з поясненням)
+            const algorithm = "Triple DES";
+            const inputText = text;
+            const outputText = extractOutputFromHTML(content); // спробуємо виділити з HTML вивідний текст
+            const explanation = content;
+
+            saveResult(algorithm, inputText, key, outputText, explanation);
+
+        } catch (error) {
+            resultDiv.innerHTML = "<span style='color:red;'>Помилка при запиті до сервера.</span>";
+        }
+    }
+
+    function extractOutputFromHTML(html) {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+
+        // Спробуємо знайти останній тег <code> — зазвичай це результат
+        const codeTags = tempDiv.querySelectorAll("code");
+        if (codeTags.length > 0) {
+            return codeTags[codeTags.length - 1].innerText;
+        }
+        return "[Результат не знайдено]";
+    }
+
+    document.getElementById("encryptBtn").addEventListener("click", () => {
+        processTripleDes("encrypt");
+    });
+
+    document.getElementById("decryptBtn").addEventListener("click", () => {
+        processTripleDes("decrypt");
+    });
+
+    function saveResult(algorithm, input, key, result, explanation) {
+        const previous = JSON.parse(localStorage.getItem("cryptoPracticeResults")) || [];
+        const entry = {
+            algorithm,
+            input,
+            key,
+            result,
+            explanation,
+            timestamp: new Date().toLocaleString()
+        };
+        previous.push(entry);
+        localStorage.setItem("cryptoPracticeResults", JSON.stringify(previous));
+    }
 </script>
 </body>
 </html>
