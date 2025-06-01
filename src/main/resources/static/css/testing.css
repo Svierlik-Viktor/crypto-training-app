@@ -1,0 +1,43 @@
+/* так ж як уtesting-caesar.html, testing-columnar.html, testing-ecdsa.html  */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.question {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+label {
+    display: block;
+    padding: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #32CD32;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #228B22;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}

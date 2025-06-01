@@ -1,0 +1,37 @@
+/* такой же как theory-caesar.html, theory-columnar.html, theory-ecdsa.html, theory-md5.html,  */
+header h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #006400; /* Темно-зеленый цвет для заголовка */
+}
+
+pre {
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 1.6;
+    background: #F8F8F8;
+    padding: 10px;
+    border-left: 5px solid #2E8B57;
+    overflow-x: auto;
+}
+
+code {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    background: #EEE;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+ul {
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 1.6; /* Улучшаем читаемость */
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+main {
+    padding: 10px;
+}

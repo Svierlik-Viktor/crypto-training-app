@@ -1,0 +1,82 @@
+/* так ж як у testing.html, theory.html,  */
+/* Секція теорії */
+.theory-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.theory-button {
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to bottom, #7CFC00, #006400);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.theory-button:hover {
+    background-color: #006400;
+    transform: translateY(-2px);
+}
+
+.theory-wrapper {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.theory-category {
+    background-color: #f0f8f0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+}
+
+.theory-category h2 {
+    text-align: center;
+    color: #2E8B57;
+    margin-bottom: 15px;
+}
+
+.theory-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.theory-button {
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to bottom, #7CFC00, #006400);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.theory-button:hover {
+    background-color: #006400;
+    transform: translateY(-2px);
+}
+
+body.night .theory-category {
+    background-color: #3a4b3a;
+    color: #f0f8ff;
+}

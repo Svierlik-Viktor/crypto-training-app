@@ -1,0 +1,135 @@
+<div th:fragment="siteHeader">
+<div class="header">
+    <!-- Логотип -->
+    <div class="logo">
+        <div class="crypto">Crypto</div>
+        <div class="training-app">Training App</div>
+    </div>
+
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+            <li><a th:href="@{/home}" class="menu-btn">Головна</a></li>
+
+            <li>
+                <a class='dropdown-arrow menu-btn' th:href="@{/theory}">Теорія</a>
+                <ul class='sub-menus'>
+                    <li>
+                        <a class='right-arrow menu-btn'>Класичні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-caesar}" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a th:href="@{/theory-vigenere}" class="menu-btn">Віженера</a></li>
+                            <li><a th:href="@{/theory-columnar}" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Симетричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-aes}" class="menu-btn">AES</a></li>
+                            <li><a th:href="@{/theory-tripledes}" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Асиметричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-rsa}" class="menu-btn">RSA</a></li>
+                            <li><a th:href="@{/theory-ecdsa}" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Хешування</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/theory-md5}" class="menu-btn">MD5</a></li>
+                            <li><a th:href="@{/theory-sha256}" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class='dropdown-arrow menu-btn' th:href="@{/practice}">Практика</a>
+                <ul class='sub-menus'>
+                    <li>
+                        <a class='right-arrow menu-btn'>Класичні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-caesar}" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a th:href="@{/practice-vigenere}" class="menu-btn">Віженера</a></li>
+                            <li><a th:href="@{/practice-columnar}" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Симетричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-aes}" class="menu-btn">AES</a></li>
+                            <li><a th:href="@{/practice-tripledes}" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Асиметричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-rsa}" class="menu-btn">RSA</a></li>
+                            <li><a th:href="@{/practice-ecdsa}" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Хешування</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/practice-md5}" class="menu-btn">MD5</a></li>
+                            <li><a th:href="@{/practice-sha256}" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class='dropdown-arrow menu-btn' th:href="@{/testing}">Тестування</a>
+                <ul class='sub-menus'>
+                    <li>
+                        <a class='right-arrow menu-btn'>Класичні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-caesar}" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a th:href="@{/testing-vigenere}" class="menu-btn">Віженера</a></li>
+                            <li><a th:href="@{/testing-columnar}" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Симетричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-aes}" class="menu-btn">AES</a></li>
+                            <li><a th:href="@{/testing-tripledes}" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Асиметричні</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-rsa}" class="menu-btn">RSA</a></li>
+                            <li><a th:href="@{/testing-ecdsa}" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class='right-arrow menu-btn'>Хешування</a>
+                        <ul class='sub-sub-menus'>
+                            <li><a th:href="@{/testing-md5}" class="menu-btn">MD5</a></li>
+                            <li><a th:href="@{/testing-sha256}" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a th:href="@{/history}" class="menu-btn">Історія практики</a></li>
+        </ul>
+    </nav>
+
+    <!-- Кнопка перемикання теми -->
+    <div id="themeToggle" class="switch">
+        <div class="toggle-icon"></div>
+        <div class="cloud"></div>
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
+    </div>
+</div>
