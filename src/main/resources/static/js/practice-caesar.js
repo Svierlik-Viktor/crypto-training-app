@@ -1,6 +1,3 @@
-function isEnglishText(text) {
-    return /^[a-zA-Z\s.,!?'"-]*$/.test(text); // допускаємо англійські літери, пробіли і базову пунктуацію
-}
 
 document.getElementById("encryptBtn").addEventListener("click", async () => {
     const text = document.getElementById("caesarText").value.trim();
@@ -18,7 +15,7 @@ document.getElementById("encryptBtn").addEventListener("click", async () => {
         return;
     }
 
-    if (!isEnglishText(text)) {
+    if (!isEnglishOnly(text)) {
         resultDiv.textContent = "Текст має містити лише англійські літери, без цифр чи спеціальних символів.";
         return;
     }
@@ -57,7 +54,7 @@ document.getElementById("decryptBtn").addEventListener("click", async () => {
         return;
     }
 
-    if (!isEnglishText(text)) {
+    if (!isEnglishOnly(text)) {
         resultDiv.textContent = "Текст має містити лише англійські літери, без цифр чи спеціальних символів.";
         return;
     }

@@ -1,6 +1,6 @@
 package com.cryptoapp.cryptotrainingapp;
 
-import com.cryptoapp.cryptotrainingapp.columnar.ColumnarResponse;
+import com.cryptoapp.cryptotrainingapp.columnar.ColumnarResult;
 import com.cryptoapp.cryptotrainingapp.columnar.ColumnarService;
 import com.cryptoapp.cryptotrainingapp.common.TextWithKeyRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,7 +44,7 @@ public class ColumnarControllerTest {
     public void testDecryptEndpoint() throws Exception {
         // Зашифруємо текст за допомогою сервісу
         ColumnarService service = new ColumnarService();
-        ColumnarResponse encrypted = service.encryptExplained("HELLO WORLD", "ZEBRAS");
+        ColumnarResult encrypted = service.encryptExplained("HELLO WORLD", "ZEBRAS");
 
         TextWithKeyRequest request = new TextWithKeyRequest();
         request.setText(encrypted.getResult());

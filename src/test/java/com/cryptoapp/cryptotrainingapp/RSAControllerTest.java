@@ -1,6 +1,6 @@
 package com.cryptoapp.cryptotrainingapp;
 
-import com.cryptoapp.cryptotrainingapp.rsa.RSAResultExplanation;
+import com.cryptoapp.cryptotrainingapp.rsa.RSAResult;
 import com.cryptoapp.cryptotrainingapp.rsa.RSAService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,10 +42,10 @@ public class RSAControllerTest {
         sampleEncrypted = Base64.getEncoder().encodeToString("Encrypted".getBytes());
         sampleHtml = "<html>Тест RSA</html>";
 
-        RSAResultExplanation encryptionExplanation = new RSAResultExplanation();
+        RSAResult encryptionExplanation = new RSAResult();
         encryptionExplanation.setHtmlFormatted(sampleHtml);
 
-        RSAResultExplanation decryptionExplanation = new RSAResultExplanation();
+        RSAResult decryptionExplanation = new RSAResult();
         decryptionExplanation.setHtmlFormatted(sampleHtml);
 
         when(rsaService.encryptWithExplanation(sampleText)).thenReturn(encryptionExplanation);

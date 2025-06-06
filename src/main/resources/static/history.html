@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/history.css" />
+    <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container">
+    <h1>Збережені результати практики</h1>
+    <button class="btn-clear" onclick="clearResults()">Очистити все</button>
+    <div id="results-container"></div>
+</div>
+
+<div id="customConfirm" style="display: none;" class="confirm-overlay">
+    <div class="confirm-box">
+        <p>Ви впевнені, що хочете видалити всі збережені результати?</p>
+        <button id="confirmYes">Так</button>
+        <button id="confirmNo">Ні</button>
+    </div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+    <script src="/js/practice-common.js"></script>
+    <script src="/js/history.js"></script>
+</body>
+</html>

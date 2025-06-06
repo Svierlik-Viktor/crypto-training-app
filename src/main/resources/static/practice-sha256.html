@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container">
+    <h1>Практика SHA-256 (Secure Hash Algorithm)</h1>
+    <p>Спробуйте створити хеш для введеного тексту за допомогою SHA-256.</p>
+
+    <label for="textInput">Введіть текст:</label>
+    <textarea id="textInput" rows="3" placeholder="Введіть текст для хешування"></textarea>
+
+    <button id="hashBtn">Створити хеш</button>
+
+    <h3>Результат:</h3>
+    <div id="result" class="result">Тут буде показано результат</div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/practice-sha256.js"></script>
+</body>
+</html>

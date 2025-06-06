@@ -37,10 +37,10 @@ public class RSAService {
         return Base64.getEncoder().encodeToString(privateKey.getEncoded());
     }
 
-    public RSAResultExplanation encryptWithExplanation(String text) throws Exception {
+    public RSAResult encryptWithExplanation(String text) throws Exception {
         if (publicKey == null) throw new IllegalStateException("Ключі не згенеровані");
 
-        RSAResultExplanation explanation = new RSAResultExplanation();
+        RSAResult explanation = new RSAResult();
         explanation.setInputText(text);
 
         byte[] textBytes = text.getBytes(StandardCharsets.UTF_8);
@@ -76,10 +76,10 @@ public class RSAService {
         return explanation;
     }
 
-    public RSAResultExplanation decryptWithExplanation(String base64Text) throws Exception {
+    public RSAResult decryptWithExplanation(String base64Text) throws Exception {
         if (privateKey == null) throw new IllegalStateException("Ключі не згенеровані");
 
-        RSAResultExplanation explanation = new RSAResultExplanation();
+        RSAResult explanation = new RSAResult();
         explanation.setEncryptedBase64(base64Text);
 
         byte[] encryptedBytes = Base64.getDecoder().decode(base64Text);

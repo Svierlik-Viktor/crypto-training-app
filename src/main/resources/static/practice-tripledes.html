@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+<div id="site-header"></div>
+
+<div class="container">
+    <h1>Практика: Triple DES (3DES)</h1>
+    <p> Введіть текст і ключ для шифрування або розшифрування за допомогою алгоритму Triple DES.<br/>
+        Ключ має складатися з 24 символів — дозволено лише латинські літери та цифри.
+        Українські символи не підтримуються. </p>
+
+    <label for="text">Текст:</label>
+    <textarea id="text" rows="3" placeholder="Введіть текст..."></textarea>
+
+    <label for="key">Ключ (24 символи):</label>
+    <input type="text" id="key" maxlength="24" placeholder="Наприклад: 1234567890ABCDEF12345678" />
+
+    <div class="button-group">
+        <button id="encryptBtn">Зашифрувати</button>
+        <button id="decryptBtn">Розшифрувати</button>
+    </div>
+
+    <h3>Результат:</h3>
+    <div id="result" class="result">Тут буде показано результат</div>
+</div>
+
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/practice-tripledes.js"></script>
+</body>
+</html>

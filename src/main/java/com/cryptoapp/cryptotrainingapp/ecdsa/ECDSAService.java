@@ -21,7 +21,7 @@ public class ECDSAService {
         return keyGen.generateKeyPair();
     }
 
-    public ECDSAResultExplanation signWithExplanation(String message, String base64PrivateKey) throws Exception {
+    public ECDSAResult signWithExplanation(String message, String base64PrivateKey) throws Exception {
         byte[] privateKeyBytes = Base64.getDecoder().decode(base64PrivateKey);
         KeyFactory keyFactory = KeyFactory.getInstance("EC", "BC");
         PrivateKey privateKey = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
@@ -33,7 +33,7 @@ public class ECDSAService {
         byte[] signatureBytes = signature.sign();
         String base64Sig = Base64.getEncoder().encodeToString(signatureBytes);
 
-        ECDSAResultExplanation explanation = new ECDSAResultExplanation();
+        ECDSAResult explanation = new ECDSAResult();
         explanation.setMessage(message);
         explanation.setBase64Signature(base64Sig);
 
@@ -49,7 +49,7 @@ public class ECDSAService {
         return explanation;
     }
 
-    public ECDSAResultExplanation verifyWithExplanation(String message, String base64PublicKey, String base64Signature) throws Exception {
+    public ECDSAResult verifyWithExplanation(String message, String base64PublicKey, String base64Signature) throws Exception {
         byte[] publicKeyBytes = Base64.getDecoder().decode(base64PublicKey);
         KeyFactory keyFactory = KeyFactory.getInstance("EC", "BC");
         PublicKey publicKey = keyFactory.generatePublic(new X509EncodedKeySpec(publicKeyBytes));
@@ -61,7 +61,7 @@ public class ECDSAService {
         byte[] signatureBytes = Base64.getDecoder().decode(base64Signature);
         boolean valid = signature.verify(signatureBytes);
 
-        ECDSAResultExplanation explanation = new ECDSAResultExplanation();
+        ECDSAResult explanation = new ECDSAResult();
         explanation.setMessage(message);
         explanation.setBase64Signature(base64Signature);
         explanation.setValid(valid);

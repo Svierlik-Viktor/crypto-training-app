@@ -1,6 +1,6 @@
 package com.cryptoapp.cryptotrainingapp;
 
-import com.cryptoapp.cryptotrainingapp.rsa.RSAResultExplanation;
+import com.cryptoapp.cryptotrainingapp.rsa.RSAResult;
 import com.cryptoapp.cryptotrainingapp.rsa.RSAService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,11 +20,11 @@ public class RSAServiceTest {
     public void testEncryptDecrypt() throws Exception {
         String original = "Test message for RSA encryption";
 
-        RSAResultExplanation encrypted = rsaService.encryptWithExplanation(original);
+        RSAResult encrypted = rsaService.encryptWithExplanation(original);
         assertNotNull(encrypted.getEncryptedBase64(), "Зашифрований текст не повинен бути null");
         assertTrue(encrypted.getHtmlFormatted().contains("Кроки шифрування RSA"), "HTML повинен містити пояснення");
 
-        RSAResultExplanation decrypted = rsaService.decryptWithExplanation(encrypted.getEncryptedBase64());
+        RSAResult decrypted = rsaService.decryptWithExplanation(encrypted.getEncryptedBase64());
         assertEquals(original, decrypted.getOutputText(), "Розшифрований текст повинен збігатися з оригіналом");
         assertTrue(decrypted.getHtmlFormatted().contains("Кроки розшифрування RSA"), "HTML повинен містити пояснення");
     }

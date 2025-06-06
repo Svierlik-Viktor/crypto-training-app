@@ -12,12 +12,12 @@ public class VigenereController {
     private VigenereService vigenereService;
 
     @PostMapping("/encrypt")
-    public VigenereResponse encrypt(@RequestBody Map<String, String> request) {
+    public VigenereResult encrypt(@RequestBody Map<String, String> request) {
         return vigenereService.encrypt(request.get("text"), request.get("key"));
     }
 
     @PostMapping("/decrypt")
-    public VigenereResponse decrypt(@RequestBody Map<String, String> request) {
+    public VigenereResult decrypt(@RequestBody Map<String, String> request) {
         return vigenereService.decrypt(request.get("text"), request.get("key"));
     }
 }

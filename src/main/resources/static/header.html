@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/header.css" />
+</head>
+<body>
+<div class="header">
+    <!-- Логотип -->
+    <div class="logo">
+        <div class="crypto">Crypto</div>
+        <div class="training-app">Training App</div>
+    </div>
+
+    <nav id="menu">
+        <input type="checkbox" id="responsive-menu" onclick="updatemenu()" /><label></label>
+        <ul>
+            <li><a href="/home.html" class="menu-btn">Головна</a></li>
+
+            <li>
+                <a class="dropdown-arrow menu-btn" href="/theory.html">Теорія</a>
+                <ul class="sub-menus">
+                    <li>
+                        <a class="right-arrow menu-btn">Класичні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/theory-caesar.html" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a href="/theory-vigenere.html" class="menu-btn">Віженера</a></li>
+                            <li><a href="/theory-columnar.html" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Симетричні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/theory-aes.html" class="menu-btn">AES</a></li>
+                            <li><a href="/theory-tripledes.html" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Асиметричні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/theory-rsa.html" class="menu-btn">RSA</a></li>
+                            <li><a href="/theory-ecdsa.html" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Хешування</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/theory-md5.html" class="menu-btn">MD5</a></li>
+                            <li><a href="/theory-sha256.html" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="dropdown-arrow menu-btn" href="/practice.html">Практика</a>
+                <ul class="sub-menus">
+                    <li>
+                        <a class="right-arrow menu-btn">Класичні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/practice-caesar.html" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a href="/practice-vigenere.html" class="menu-btn">Віженера</a></li>
+                            <li><a href="/practice-columnar.html" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Симетричні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/practice-aes.html" class="menu-btn">AES</a></li>
+                            <li><a href="/practice-tripledes.html" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Асиметричні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/practice-rsa.html" class="menu-btn">RSA</a></li>
+                            <li><a href="/practice-ecdsa.html" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Хешування</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/practice-md5.html" class="menu-btn">MD5</a></li>
+                            <li><a href="/practice-sha256.html" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="dropdown-arrow menu-btn" href="/testing.html">Тестування</a>
+                <ul class="sub-menus">
+                    <li>
+                        <a class="right-arrow menu-btn">Класичні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/testing-caesar.html" class="menu-btn">Шифр Цезаря</a></li>
+                            <li><a href="/testing-vigenere.html" class="menu-btn">Віженера</a></li>
+                            <li><a href="/testing-columnar.html" class="menu-btn">Перестановка</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Симетричні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/testing-aes.html" class="menu-btn">AES</a></li>
+                            <li><a href="/testing-tripledes.html" class="menu-btn">Triple DES</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Асиметричні</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/testing-rsa.html" class="menu-btn">RSA</a></li>
+                            <li><a href="/testing-ecdsa.html" class="menu-btn">ECDSA</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="right-arrow menu-btn">Хешування</a>
+                        <ul class="sub-sub-menus">
+                            <li><a href="/testing-md5.html" class="menu-btn">MD5</a></li>
+                            <li><a href="/testing-sha256.html" class="menu-btn">SHA-256</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a href="/history.html" class="menu-btn">Історія практики</a></li>
+        </ul>
+    </nav>
+
+    <div id="themeToggle" class="switch">
+        <div class="toggle-icon"></div>
+        <div class="cloud"></div>
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/header-unified.js"></script>
+</body>
+</html>

@@ -1,8 +1,4 @@
 
-function isEnglishOnly(text) {
-    return /^[a-zA-Z\s.,!?'"-]+$/.test(text);
-}
-
 async function handleColumnarRequest(endpoint) {
     const text = document.getElementById("text").value.trim();
     const key = document.getElementById("key").value.trim();
@@ -48,7 +44,7 @@ async function handleColumnarRequest(endpoint) {
         resultDiv.innerHTML = `<strong>${endpoint === 'encrypt' ? 'Зашифровано' : 'Розшифровано'}:</strong> ${data.result}`;
         renderExplanation(data);
 
-        // ✅ Збереження результату
+        //  Збереження результату
         const explanationHTML = explanationDiv.innerHTML;
         saveResult("Columnar Transposition Cipher", text, key, data.result, explanationHTML);
 
@@ -60,33 +56,41 @@ async function handleColumnarRequest(endpoint) {
 }
 
 function renderExplanation(data) {
-    const { key, order, matrix } = data;
-    let html = `<p><strong>Ключ:</strong> ${key.join(" ")}</p>`;
-    html += `<p><strong>Порядок стовпців:</strong> ${order.join(" ")}</p>`;
-    html += `<table style="border-collapse: collapse; margin-top: 10px;">`;
+    const { key, order, matrix, rearrangedMatrix, decryptedMatrix } = data;
+    let html = `
+        <div class="explanation-section">
+            <p><strong>Ключ:</strong> ${key.join(' ')}</p>
+            <p><strong>Порядок стовпців:</strong> ${order.map(i => i + 1).join(' → ')}</p>
+            ${renderMatrix("Початкова матриця", matrix)}
+    `;
 
-    html += "<tr>";
-    key.forEach(k => {
-        html += `<th style="border: 1px solid black; padding: 5px;">${k}</th>`;
-    });
-    html += "</tr>";
+    if (rearrangedMatrix) {
+        html += renderMatrix("Матриця після перестановки (шифрування)", rearrangedMatrix);
+    }
+    if (decryptedMatrix) {
+        html += renderMatrix("Матриця для дешифрування", decryptedMatrix);
+    }
 
-    html += "<tr>";
-    order.forEach(o => {
-        html += `<td style="border: 1px solid black; padding: 5px;">${o}</td>`;
-    });
-    html += "</tr>";
+    document.getElementById("explanation").innerHTML = html + '</div>';
+}
 
-    matrix.forEach(row => {
-        html += "<tr>";
-        row.forEach(cell => {
-            html += `<td style="border: 1px solid black; padding: 5px;">${cell}</td>`;
-        });
-        html += "</tr>";
-    });
-
-    html += "</table>";
-    document.getElementById("explanation").innerHTML = html;
+function renderMatrix(title, matrix) {
+    return `
+        <div class="matrix-container">
+            <h4>${title}</h4>
+            <table class="matrix-table">
+                ${matrix.map((row, rowIndex) => `
+                    <tr>
+                        ${row.map((cell, colIndex) => `
+                            <td class="${rowIndex === 0 ? 'header-cell' : 'data-cell'}">
+                                ${cell}
+                            </td>
+                        `).join('')}
+                    </tr>
+                `).join('')}
+            </table>
+        </div>
+    `;
 }
 
 document.getElementById("encryptBtn").addEventListener("click", () => handleColumnarRequest("encrypt"));

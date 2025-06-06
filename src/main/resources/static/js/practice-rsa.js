@@ -1,6 +1,3 @@
-function isUkrainianOrEnglish(text) {
-    return /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ0-9\s.,!?'"():;[\]{}<>@#%^&*+=_\-\\|/~`$]*$/.test(text);
-}
 
 document.getElementById("generateKeysBtn").addEventListener("click", async () => {
     try {

@@ -15,7 +15,7 @@ public class TripleDesController {
     }
 
     @PostMapping(value = "/encrypt", produces = MediaType.TEXT_HTML_VALUE)
-    public ResponseEntity<String> encrypt(@RequestBody TripleDesRequest request) {
+    public ResponseEntity<String> encrypt(@RequestBody TripleDesResult request) {
         try {
             String explanation = tripleDesService.encrypt(request.getText(), request.getKey());
             return ResponseEntity.ok(explanation);
@@ -25,7 +25,7 @@ public class TripleDesController {
     }
 
     @PostMapping(value = "/decrypt", produces = MediaType.TEXT_HTML_VALUE)
-    public ResponseEntity<String> decrypt(@RequestBody TripleDesRequest request) {
+    public ResponseEntity<String> decrypt(@RequestBody TripleDesResult request) {
         try {
             String explanation = tripleDesService.decrypt(request.getText(), request.getKey());
             return ResponseEntity.ok(explanation);

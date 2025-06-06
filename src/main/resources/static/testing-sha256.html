@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/testing.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<!-- Контейнер тесту -->
+<div class="container" id="testContainer">
+    <h1>Тестування SHA-256</h1>
+    <p>Обери правильні відповіді:</p>
+
+    <form id="testForm">
+        <div class="question">
+            <p>1. Що є основним завданням SHA-256?</p>
+            <label><input type="radio" name="q1" value="a"> Шифрування даних</label>
+            <label><input type="radio" name="q1" value="b"> Хешування даних</label>
+            <label><input type="radio" name="q1" value="c"> Генерація ключів</label>
+        </div>
+
+        <div class="question">
+            <p>2. Яка довжина хешу у SHA-256?</p>
+            <label><input type="radio" name="q2" value="a"> 128 біт</label>
+            <label><input type="radio" name="q2" value="b"> 256 біт</label>
+            <label><input type="radio" name="q2" value="c"> 512 біт</label>
+        </div>
+
+        <div class="question">
+            <p>3. Чи можливо отримати оригінальні дані з хешу SHA-256?</p>
+            <label><input type="radio" name="q3" value="a"> Так</label>
+            <label><input type="radio" name="q3" value="b"> Ні</label>
+        </div>
+
+        <div class="question">
+            <p>4. Де використовується SHA-256?</p>
+            <label><input type="radio" name="q4" value="a"> У блокчейні</label>
+            <label><input type="radio" name="q4" value="b"> У перевірці цілісності файлів</label>
+            <label><input type="radio" name="q4" value="c"> У цифрових підписах</label>
+            <label><input type="radio" name="q4" value="d"> Усі відповіді правильні</label>
+        </div>
+
+        <div class="question">
+            <p>5. Яка головна проблема SHA-256?</p>
+            <label><input type="radio" name="q5" value="a"> Вразливість до факторизації</label>
+            <label><input type="radio" name="q5" value="b"> Високі обчислювальні витрати</label>
+            <label><input type="radio" name="q5" value="c"> Використання слабких паролів</label>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Перевірити відповіді</button>
+    </form>
+
+    <div id="result">Результат буде показано тут</div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/testing-sha256.js"></script>
+
+</body>
+</html>

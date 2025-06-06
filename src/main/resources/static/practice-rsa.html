@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container">
+    <h1>Практика RSA (Rivest-Shamir-Adleman)</h1>
+    <p>Спробуйте згенерувати ключі, зашифрувати та розшифрувати текст за допомогою RSA.</p>
+
+    <button id="generateKeysBtn">Згенерувати ключі RSA</button>
+
+    <label for="publicKey">Відкритий ключ:</label>
+    <textarea id="publicKey" rows="5" readonly></textarea>
+
+    <label for="privateKey">Приватний ключ:</label>
+    <textarea id="privateKey" rows="5" readonly></textarea>
+
+    <label for="textInput">Введіть текст:</label>
+    <textarea id="textInput" rows="3" placeholder="Введіть текст для шифрування або розшифрування"></textarea>
+
+    <button id="encryptBtn">Зашифрувати</button>
+    <button id="decryptBtn">Розшифрувати</button>
+
+    <h3>Результат:</h3>
+    <div id="result" class="result">Тут буде показано результат</div>
+</div>
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/practice-rsa.js"></script>
+</body>
+</html>

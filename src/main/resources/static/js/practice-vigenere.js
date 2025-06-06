@@ -1,6 +1,3 @@
-function isEnglishOnly(text) {
-    return /^[a-zA-Z\s.,!?'"-]+$/.test(text);
-}
 
 async function vigenereRequest(endpoint, text, key) {
     try {

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class VigenereService {
 
-    public VigenereResponse encrypt(String text, String key) {
+    public VigenereResult encrypt(String text, String key) {
         text = text.toUpperCase().replaceAll("[^A-Z]", "");
         key = key.toUpperCase().replaceAll("[^A-Z]", "");
 
@@ -33,10 +33,10 @@ public class VigenereService {
 
         explanation.append("</table>");
 
-        return new VigenereResponse(result.toString(), explanation.toString());
+        return new VigenereResult(result.toString(), explanation.toString());
     }
 
-    public VigenereResponse decrypt(String text, String key) {
+    public VigenereResult decrypt(String text, String key) {
         text = text.toUpperCase().replaceAll("[^A-Z]", "");
         key = key.toUpperCase().replaceAll("[^A-Z]", "");
 
@@ -64,6 +64,6 @@ public class VigenereService {
 
         explanation.append("</table>");
 
-        return new VigenereResponse(result.toString(), explanation.toString());
+        return new VigenereResult(result.toString(), explanation.toString());
     }
 }

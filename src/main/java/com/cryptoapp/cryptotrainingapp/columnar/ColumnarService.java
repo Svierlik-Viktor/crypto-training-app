@@ -1,17 +1,20 @@
 package com.cryptoapp.cryptotrainingapp.columnar;
 
 import org.springframework.stereotype.Service;
-
 import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
+
 
 @Service
 public class ColumnarService {
 
-    public ColumnarResponse encryptExplained(String plaintext, String key) {
+    public ColumnarResult encryptExplained(String plaintext, String key) {
         int columns = key.length();
         int rows = (int) Math.ceil((double) plaintext.length() / columns);
         char[][] matrix = new char[rows][columns];
 
+        // Заповнення матриці
         int index = 0;
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < columns; c++) {
@@ -20,29 +23,35 @@ public class ColumnarService {
         }
 
         Integer[] order = getKeyOrder(key);
-
         StringBuilder encrypted = new StringBuilder();
-        for (int colIndex : order) {
+        char[][] rearranged = new char[rows][columns];
+
+        // Шифрування та створення rearrangedMatrix
+        for (int newCol = 0; newCol < columns; newCol++) {
+            int originalCol = order[newCol];
             for (int r = 0; r < rows; r++) {
-                encrypted.append(matrix[r][colIndex]);
+                rearranged[r][newCol] = matrix[r][originalCol];
+                encrypted.append(matrix[r][originalCol]);
             }
         }
 
-        return new ColumnarResponse(
+        return new ColumnarResult(
                 encrypted.toString(),
                 toCharList(key),
                 Arrays.asList(order),
-                toListMatrix(matrix)
+                toListMatrix(matrix),
+                toListMatrix(rearranged),
+                null
         );
     }
 
-    public ColumnarResponse decryptExplained(String ciphertext, String key) {
+    public ColumnarResult decryptExplained(String ciphertext, String key) {
         int columns = key.length();
         int rows = (int) Math.ceil((double) ciphertext.length() / columns);
         char[][] matrix = new char[rows][columns];
-
         Integer[] order = getKeyOrder(key);
 
+        // Заповнення матриці при дешифруванні
         int index = 0;
         for (int colIndex : order) {
             for (int r = 0; r < rows; r++) {
@@ -52,6 +61,7 @@ public class ColumnarService {
             }
         }
 
+        // Формування результату
         StringBuilder decrypted = new StringBuilder();
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < columns; c++) {
@@ -59,38 +69,36 @@ public class ColumnarService {
             }
         }
 
-        return new ColumnarResponse(
+        return new ColumnarResult(
                 decrypted.toString().replaceAll("X+$", ""),
                 toCharList(key),
                 Arrays.asList(order),
+                toListMatrix(matrix),
+                null,
                 toListMatrix(matrix)
         );
     }
 
     private Integer[] getKeyOrder(String key) {
-        Character[] keyChars = new Character[key.length()];
-        for (int i = 0; i < key.length(); i++) keyChars[i] = key.charAt(i);
-
-        Integer[] order = new Integer[key.length()];
-        for (int i = 0; i < key.length(); i++) order[i] = i;
-
+        Character[] keyChars = key.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
+        Integer[] order = IntStream.range(0, key.length()).boxed().toArray(Integer[]::new);
         Arrays.sort(order, Comparator.comparingInt(i -> keyChars[i]));
         return order;
     }
 
     private List<Character> toCharList(String s) {
-        List<Character> list = new ArrayList<>();
-        for (char c : s.toCharArray()) list.add(c);
-        return list;
+        return s.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
     }
 
     private List<List<Character>> toListMatrix(char[][] matrix) {
-        List<List<Character>> list = new ArrayList<>();
+        List<List<Character>> result = new ArrayList<>();
         for (char[] row : matrix) {
             List<Character> rowList = new ArrayList<>();
-            for (char c : row) rowList.add(c);
-            list.add(rowList);
+            for (char c : row) {
+                rowList.add(c);
+            }
+            result.add(rowList);
         }
-        return list;
+        return result;
     }
 }

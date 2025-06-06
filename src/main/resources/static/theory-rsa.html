@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/theory.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<header>
+    <h1>RSA (Rivest–Shamir–Adleman)</h1>
+</header>
+<main>
+    <section class="section">
+        <h2>1. Теорія RSA</h2>
+        <p>
+            RSA є одним із найпоширеніших алгоритмів асиметричного шифрування.
+            Його було створено Рональдом Рівестом, Аді Шаміром та Леонардом Адлеманом у 1977
+            році. RSA базується на математичній складності факторизації великих чисел,
+            що робить його стійким до багатьох атак. Основні етапи роботи RSA:
+        <ul>
+            <li>Генерація ключів: створюється пара ключів — публічний (для шифрування) та приватний (для розшифрування).</li>
+            <li>Шифрування: відкритий текст перетворюється в шифротекст за допомогою публічного ключа.</li>
+            <li>Розшифрування: шифротекст відновлюється у відкритий текст за допомогою приватного ключа.</li>
+        </ul>
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Переваги RSA</h2>
+        <ul>
+            <li>Асиметричність: не вимагає попередньої передачі ключа між сторонами.</li>
+            <li>Безпека: стійкість до атак, якщо використовуються довгі ключі.</li>
+            <li>Широке використання: використовується для цифрових підписів, обміну ключами тощо.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>3. Недоліки RSA</h2>
+        <ul>
+            <li>Швидкодія: алгоритм значно повільніший за симетричні шифри.</li>
+            <li>Великі ключі: вимагає більше пам’яті для зберігання ключів.</li>
+            <li>алежність від випадковості: потребує якісних генераторів випадкових чисел.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>4. Алгоритм RSA</h2>
+        <p>
+            Основні кроки алгоритму:
+        </p>
+        <ol>
+            <li>Вибір двох простих чисел (p і q) та обчислення n = p ⋅ q.</li>
+            <li>Обчислення функції Ейлера: 𝜙(𝑛)= (𝑝 − 1)(𝑞 − 1).</li>
+            <li>Вибір відкритого ключа e: число, що є взаємно простим із 𝜙(𝑛) .</li>
+            <li>Обчислення приватного ключа d: 𝑑 ⋅ 𝑒 ≡ 1 (mod 𝜙(n)).</li>
+            <li>Шифрування: C = M<sup>e</sup> (mod n).</li>
+            <li>Розшифрування: M = C<sup>d</sup> (mod n).</li>
+        </ol>
+    </section>
+
+    <section class="section">
+        <h2>5. Реалізація RSA на Java</h2>
+        <pre>
+<code>
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class RSA {
+    private BigInteger primeP, primeQ, n, phi, e, d;
+    private final int maxLength = 1024;
+    private final SecureRandom random = new SecureRandom();
+
+    public void generateKeys() {
+        primeP = BigInteger.probablePrime(maxLength, random);
+        primeQ = BigInteger.probablePrime(maxLength, random);
+        n = primeP.multiply(primeQ);
+        phi = primeP.subtract(BigInteger.ONE).multiply(primeQ.subtract(BigInteger.ONE));
+        e = BigInteger.probablePrime(maxLength / 2, random);
+        while (phi.gcd(e).compareTo(BigInteger.ONE) != 0) {
+            e = BigInteger.probablePrime(maxLength / 2, random);
+        }
+        d = e.modInverse(phi);
+    }
+
+    public byte[] encrypt(byte[] message) {
+        return (new BigInteger(message)).modPow(e, n).toByteArray();
+    }
+
+    public byte[] decrypt(byte[] encryptedMessage) {
+        return (new BigInteger(encryptedMessage)).modPow(d, n).toByteArray();
+    }
+
+    public static void main(String[] args) throws Exception {
+        RSA rsa = new RSA();
+        rsa.generateKeys();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Введіть текст: ");
+        String plainText = reader.readLine();
+
+        byte[] encrypted = rsa.encrypt(plainText.getBytes());
+        System.out.println("Зашифрований текст: " + new String(encrypted));
+
+        byte[] decrypted = rsa.decrypt(encrypted);
+        System.out.println("Розшифрований текст: " + new String(decrypted));
+    }
+}
+</code>
+            </pre>
+    </section>
+</main>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+</body>
+</html>

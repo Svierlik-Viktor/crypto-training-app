@@ -30,7 +30,7 @@ public class RSAController {
     public ResponseEntity<String> encrypt(@RequestBody Map<String, String> request) {
         try {
             String text = request.get("text");
-            RSAResultExplanation explanation = rsaService.encryptWithExplanation(text);
+            RSAResult explanation = rsaService.encryptWithExplanation(text);
             return ResponseEntity.ok(explanation.getHtmlFormatted());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -42,7 +42,7 @@ public class RSAController {
     public ResponseEntity<String> decrypt(@RequestBody Map<String, String> request) {
         try {
             String encryptedText = request.get("text");
-            RSAResultExplanation explanation = rsaService.decryptWithExplanation(encryptedText);
+            RSAResult explanation = rsaService.decryptWithExplanation(encryptedText);
             return ResponseEntity.ok(explanation.getHtmlFormatted());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

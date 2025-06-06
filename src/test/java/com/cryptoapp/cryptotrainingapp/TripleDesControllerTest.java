@@ -1,6 +1,6 @@
 package com.cryptoapp.cryptotrainingapp;
 
-import com.cryptoapp.cryptotrainingapp.tripledes.TripleDesRequest;
+import com.cryptoapp.cryptotrainingapp.tripledes.TripleDesResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,7 +31,7 @@ public class TripleDesControllerTest {
     @Test
     public void testEncryptDecrypt() throws Exception {
         // 🛡 Шифрування
-        TripleDesRequest encryptRequest = new TripleDesRequest();
+        TripleDesResult encryptRequest = new TripleDesResult();
         encryptRequest.setText(plaintext);
         encryptRequest.setKey(key);
 
@@ -52,7 +52,7 @@ public class TripleDesControllerTest {
         assertThat(encryptedText).isNotBlank();
 
         // Розшифрування
-        TripleDesRequest decryptRequest = new TripleDesRequest();
+        TripleDesResult decryptRequest = new TripleDesResult();
         decryptRequest.setText(encryptedText);
         decryptRequest.setKey(key);
 

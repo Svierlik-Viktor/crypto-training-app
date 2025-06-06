@@ -1,15 +1,3 @@
-function isValidTripleDesText(text) {
-    return /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ0-9\s.,!?'"():;[\]{}<>@#%^&*+=_\-\\|/~`$]*$/.test(text);
-}
-
-function containsUkrainian(text) {
-    return /[а-яіїєґА-ЯІЇЄҐ]/.test(text);
-}
-
-function isValidTripleDesKey(key) {
-    // Дозволено тільки англійські символи, цифри, спецсимволи
-    return /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{24}$/.test(key) && !containsUkrainian(key);
-}
 
 async function processTripleDes(endpoint) {
     const text = document.getElementById("text").value.trim();

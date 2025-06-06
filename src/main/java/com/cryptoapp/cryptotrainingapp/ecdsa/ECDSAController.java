@@ -23,14 +23,14 @@ public class ECDSAController {
     }
 
     @PostMapping("/sign")
-    public ECDSAResultExplanation signMessage(@RequestBody Map<String, String> payload) throws Exception {
+    public ECDSAResult signMessage(@RequestBody Map<String, String> payload) throws Exception {
         String message = payload.get("message");
         String privateKey = payload.get("privateKey");
         return ecdsaService.signWithExplanation(message, privateKey);
     }
 
     @PostMapping("/verify")
-    public ECDSAResultExplanation verifySignature(@RequestBody Map<String, String> payload) throws Exception {
+    public ECDSAResult verifySignature(@RequestBody Map<String, String> payload) throws Exception {
         String message = payload.get("message");
         String publicKey = payload.get("publicKey");
         String signature = payload.get("signature");

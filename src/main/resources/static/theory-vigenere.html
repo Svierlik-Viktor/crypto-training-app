@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/theory.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<header>
+    <h1>Шифр Віжинера</h1>
+</header>
+<main>
+    <section class="section">
+        <h2>1. Теорія Шифра Віженера</h2>
+        <p>
+            Шифр Віженера – це поліалфавітний шифр, який використовує ключове слово для шифрування та
+            розшифрування повідомлень. Названий на честь французького криптографа Блезу Віженера,
+            хоча вперше був описаний італійцем Джованні Баттіста Беллазо. Основна ідея шифра полягає
+            в тому, що кожна літера повідомлення шифрується шляхом зміщення за алфавітом
+            на певну кількість позицій, визначену відповідною літерою ключа.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Переваги Шифра Віженера</h2>
+        <ul>
+            <li>Простота реалізації: Легкий для розуміння та реалізації на будь-якій мові програмування.</li>
+            <li>Відсутність однакових шифротекстів: Однакові символи відкритого тексту можуть шифруватися по-різному.</li>
+            <li>Підходить для навчання: Використовується як навчальний приклад для вивчення шифрування.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>3. Недоліки Шифра Віженера</h2>
+        <ul>
+            <li>Чутливість до довжини ключа: Короткий ключ може бути легко зламаний за допомогою криптоаналізу.</li>
+            <li>Необхідність секретного ключа: Обидві сторони повинні мати однаковий ключ.</li>
+            <li>Уразливість до криптоаналізу: Методи, такі як аналіз частот і метод Касіскі, дозволяють визначити довжину ключа та розшифрувати текст.</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>4. Принцип роботи шифра</h2>
+        <ol>
+            <li>Підготовка ключа: Якщо ключ коротший за повідомлення, він повторюється до відповідної довжини.</li>
+            <li>Шифрування: Кожна літера повідомлення зміщується на кількість позицій, визначену відповідною літерою ключа.</li>
+            <ul>
+            <li>Формула:
+                <span style="font-family: 'Consolas', monospace;">
+        C<sub>i</sub> = (P<sub>i</sub> + K<sub>i</sub>) mod 26
+    </span>, де
+                <span style="font-family: 'Consolas', monospace;">C<sub>i</sub></span> – шифротекст,
+                <span style="font-family: 'Consolas', monospace;">P<sub>i</sub></span> – літера повідомлення,
+                <span style="font-family: 'Consolas', monospace;">K<sub>i</sub></span> – літера ключа.</li>
+            </ul>
+            <li>Розшифрування: Зворотна операція.</li>
+            <ul>
+                <li>Формула:
+                    <span style="font-family: 'Consolas', monospace;">
+        P<sub>i</sub> = (C<sub>i</sub> − K<sub>i</sub>) mod 26
+    </span>.</li>
+            </ul>
+
+        </ol>
+    </section>
+
+    <section class="section">
+        <h2>5. Приклад реалізації на Java</h2>
+        <pre>
+<code>
+public class VigenereCipher {
+
+    // Метод для шифрування
+    public static String encrypt(String text, String key) {
+        StringBuilder result = new StringBuilder();
+        key = key.toUpperCase();
+        text = text.toUpperCase();
+
+        for (int i = 0, j = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (Character.isLetter(c)) {
+                result.append((char) ((c + key.charAt(j) - 2 * 'A') % 26 + 'A'));
+                j = ++j % key.length();
+            } else {
+                result.append(c); // Зберігаємо неалфавітні символи без змін
+            }
+        }
+        return result.toString();
+    }
+
+    // Метод для розшифрування
+    public static String decrypt(String text, String key) {
+        StringBuilder result = new StringBuilder();
+        key = key.toUpperCase();
+        text = text.toUpperCase();
+
+        for (int i = 0, j = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (Character.isLetter(c)) {
+                result.append((char) ((c - key.charAt(j) + 26) % 26 + 'A'));
+                j = ++j % key.length();
+            } else {
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
+
+    // Головний метод
+    public static void main(String[] args) {
+        String plaintext = "HELLO VIGENERE CIPHER";
+        String key = "KEY";
+
+        String encrypted = encrypt(plaintext, key);
+        System.out.println("Encrypted: " + encrypted);
+
+        String decrypted = decrypt(encrypted, key);
+        System.out.println("Decrypted: " + decrypted);
+    }
+}
+</code>
+            </pre>
+    </section>
+</main>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+</body>
+</html>

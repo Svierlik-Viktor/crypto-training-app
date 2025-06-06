@@ -1,6 +1,6 @@
 package com.cryptoapp.cryptotrainingapp;
 
-import com.cryptoapp.cryptotrainingapp.ecdsa.ECDSAResultExplanation;
+import com.cryptoapp.cryptotrainingapp.ecdsa.ECDSAResult;
 import com.cryptoapp.cryptotrainingapp.ecdsa.ECDSAService;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,11 +18,11 @@ public class ECDSAServiceTest {
         String publicKeyBase64 = service.encodePublicKey(keyPair.getPublic());
 
         // Підпис
-        ECDSAResultExplanation signed = service.signWithExplanation(message, privateKeyBase64);
+        ECDSAResult signed = service.signWithExplanation(message, privateKeyBase64);
         assertNotNull(signed.getBase64Signature());
 
         // Перевірка
-        ECDSAResultExplanation verified = service.verifyWithExplanation(message, publicKeyBase64, signed.getBase64Signature());
+        ECDSAResult verified = service.verifyWithExplanation(message, publicKeyBase64, signed.getBase64Signature());
         assertTrue(verified.isValid());
     }
 
@@ -35,9 +35,9 @@ public class ECDSAServiceTest {
         String privateKeyBase64 = service.encodePrivateKey(keyPair.getPrivate());
         String publicKeyBase64 = service.encodePublicKey(keyPair.getPublic());
 
-        ECDSAResultExplanation signed = service.signWithExplanation(message, privateKeyBase64);
+        ECDSAResult signed = service.signWithExplanation(message, privateKeyBase64);
 
-        ECDSAResultExplanation verified = service.verifyWithExplanation(tamperedMessage, publicKeyBase64, signed.getBase64Signature());
+        ECDSAResult verified = service.verifyWithExplanation(tamperedMessage, publicKeyBase64, signed.getBase64Signature());
 
         assertFalse(verified.isValid());
     }
@@ -47,8 +47,8 @@ public class ECDSAServiceTest {
         var keyPair = service.generateKeyPair();
         String privateKeyBase64 = service.encodePrivateKey(keyPair.getPrivate());
 
-        ECDSAResultExplanation sig1 = service.signWithExplanation("msg1", privateKeyBase64);
-        ECDSAResultExplanation sig2 = service.signWithExplanation("msg2", privateKeyBase64);
+        ECDSAResult sig1 = service.signWithExplanation("msg1", privateKeyBase64);
+        ECDSAResult sig2 = service.signWithExplanation("msg2", privateKeyBase64);
 
         assertNotEquals(sig1.getBase64Signature(), sig2.getBase64Signature());
     }

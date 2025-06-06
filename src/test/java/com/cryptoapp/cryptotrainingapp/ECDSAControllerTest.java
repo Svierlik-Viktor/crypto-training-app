@@ -1,6 +1,6 @@
 package com.cryptoapp.cryptotrainingapp;
 
-import com.cryptoapp.cryptotrainingapp.ecdsa.ECDSAResultExplanation;
+import com.cryptoapp.cryptotrainingapp.ecdsa.ECDSAResult;
 import com.cryptoapp.cryptotrainingapp.ecdsa.ECDSAService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -58,7 +58,7 @@ public class ECDSAControllerTest {
         request.put("message", "Test message");
         request.put("privateKey", "fakePrivateKey");
 
-        ECDSAResultExplanation explanation = new ECDSAResultExplanation();
+        ECDSAResult explanation = new ECDSAResult();
         explanation.setMessage("Test message");
         explanation.setBase64Signature("abc123==");
         explanation.setHtmlFormatted("<html>Sign Explanation</html>");
@@ -81,7 +81,7 @@ public class ECDSAControllerTest {
         request.put("publicKey", "fakePublicKey");
         request.put("signature", "abc123==");
 
-        ECDSAResultExplanation explanation = new ECDSAResultExplanation();
+        ECDSAResult explanation = new ECDSAResult();
         explanation.setMessage("Test message");
         explanation.setBase64Signature("abc123==");
         explanation.setValid(true);

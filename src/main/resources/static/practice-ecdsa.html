@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crypto Training App</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container">
+  <h1>Практика: Цифровий підпис ECDSA</h1>
+  <p>Згенеруйте підпис для повідомлення або перевірте вже існуючий підпис за допомогою ECDSA.</p>
+
+  <label for="ecdsaMessage">Повідомлення:</label>
+  <textarea id="ecdsaMessage" rows="3" placeholder="Введіть повідомлення для підпису або перевірки..."></textarea>
+
+  <div style="margin-bottom: 20px;">
+    <button id="generateKeysBtn">Згенерувати ключі</button>
+  </div>
+
+  <label for="ecdsaPrivateKey">Приватний ключ:</label>
+  <textarea id="ecdsaPrivateKey" rows="2" placeholder="Генерується автоматично..." readonly></textarea>
+
+  <label for="ecdsaPublicKey">Публічний ключ:</label>
+  <textarea id="ecdsaPublicKey" rows="2" placeholder="Генерується автоматично..." readonly></textarea>
+
+  <button id="signBtn">Підписати</button>
+
+  <label for="ecdsaSignature">Підпис:</label>
+  <textarea id="ecdsaSignature" rows="2" placeholder="Тут буде підпис або вставте свій..."></textarea>
+
+  <button id="verifyBtn">Перевірити підпис</button>
+
+  <h3>Результат:</h3>
+  <div id="result" class="result">Тут буде показано результат</div>
+
+  <h3>Пояснення:</h3>
+  <div id="explanation"class="explanation">Пояснення будуть тут показані</div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/practice-ecdsa.js"></script>
+</body>
+</html>

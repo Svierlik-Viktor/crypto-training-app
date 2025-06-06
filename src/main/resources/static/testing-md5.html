@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/testing.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container" id="testContainer">
+    <h1>Тестування MD5</h1>
+    <p>Обери правильні відповіді:</p>
+
+    <form id="testForm">
+        <div class="question">
+            <p>1. Що є основною метою MD5?</p>
+            <label><input type="radio" name="q1" value="a"> Шифрування повідомлень</label>
+            <label><input type="radio" name="q1" value="b"> Перевірка цілісності даних</label>
+            <label><input type="radio" name="q1" value="c"> Генерація випадкових чисел</label>
+        </div>
+
+        <div class="question">
+            <p>2. Яка довжина хешу, що генерується MD5?</p>
+            <label><input type="radio" name="q2" value="a"> 64 біти</label>
+            <label><input type="radio" name="q2" value="b"> 128 біт</label>
+            <label><input type="radio" name="q2" value="c"> 256 біт</label>
+        </div>
+
+        <div class="question">
+            <p>3. Чому MD5 вважається небезпечним для використання в криптографії?</p>
+            <label><input type="radio" name="q3" value="a"> Погано працює з великими файлами</label>
+            <label><input type="radio" name="q3" value="b"> Може дати однаковий хеш для різних даних</label>
+            <label><input type="radio" name="q3" value="c"> Потребує багато памʼяті</label>
+        </div>
+
+        <div class="question">
+            <p>4. Яка операція НЕ використовується в алгоритмі MD5?</p>
+            <label><input type="radio" name="q4" value="a"> Побітові обчислення</label>
+            <label><input type="radio" name="q4" value="b"> Шифрування за допомогою симетричного ключа</label>
+            <label><input type="radio" name="q4" value="c"> Конкатенація результатів</label>
+        </div>
+
+        <div class="question">
+            <p>5. Який з варіантів є перевагою MD5?</p>
+            <label><input type="radio" name="q5" value="a"> Висока обчислювальна ефективність</label>
+            <label><input type="radio" name="q5" value="b"> Стійкість до колізій</label>
+            <label><input type="radio" name="q5" value="c"> Використовується для шифрування файлів</label>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Перевірити відповіді</button>
+    </form>
+
+    <div id="result">Результат буде показано тут</div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/testing-ecdsa.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/theory.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<header>
+  <h1>MD5 (Message-Digest Algorithm 5)</h1>
+</header>
+<main>
+  <section class="section">
+    <h2>1. Теорія MD5</h2>
+    <p>
+      MD5 — це криптографічна хеш-функція, створена Рональдом Рівестом у 1991 році. Вона приймає довільне повідомлення як вхід і повертає 128-бітний хеш-код (32-символьний шістнадцятковий рядок).
+      Раніше широко використовувалася для перевірки цілісності даних.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>2. Переваги MD5</h2>
+    <ul>
+      <li>Висока швидкість обчислення.</li>
+      <li>Простота реалізації у різних мовах програмування.</li>
+      <li>Широко підтримується (в бібліотеках, API, системах).</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>3. Недоліки MD5</h2>
+    <ul>
+      <li>Уразливість до колізій (дві різні вхідні строки можуть дати однаковий хеш).</li>
+      <li>Непридатний для використання у криптографії (наприклад, цифрових підписах, сертифікатах).</li>
+      <li>Застарілий стандарт: більше не рекомендований для безпеки.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>4. Формула хешування</h2>
+    <ul>
+      <li>Хеш-функція: <code>MD5(M) → h</code>, де M — повідомлення, h — 128-бітний хеш.</li>
+      <li>Працює блоками по 512 біт: кожен блок обробляється з використанням логічних функцій та побітових операцій.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>5. Кроки роботи алгоритму MD5</h2>
+    <ol>
+      <li>Доповнення повідомлення до довжини, кратної 512 біт.</li>
+      <li>Додавання довжини оригінального повідомлення (64 біти).</li>
+      <li>Ініціалізація буферів (A, B, C, D).</li>
+      <li>Обробка кожного блоку 64 раундами операцій з використанням констант і функцій (F, G, H, I).</li>
+      <li>Після обробки всіх блоків об'єднання A, B, C, D → фінальний хеш.</li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>6. Реалізація MD5 на Java</h2>
+    <pre><code>
+import java.security.MessageDigest;
+
+public class MD5Example {
+    public static String hash(String input) throws Exception {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        byte[] digest = md.digest(input.getBytes());
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : digest) {
+            hexString.append(String.format("%02x", b));
+        }
+        return hexString.toString();
+    }
+
+    public static void main(String[] args) throws Exception {
+        String text = "Hello, world!";
+        String hashed = hash(text);
+        System.out.println("MD5 хеш: " + hashed);
+    }
+}
+    </code></pre>
+  </section>
+</main>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+    <div class="container">
+        <h1>Практика AES (Advanced Encryption Standard)</h1>
+        <p>Спробуйте зашифрувати та розшифрувати текст за допомогою AES.</p>
+
+        <label for="textInput">Введіть текст:</label>
+        <textarea id="textInput" rows="3" placeholder="Введіть текст для шифрування"></textarea>
+
+        <label for="keyInput">Введіть ключ (довжина 16 символів):</label>
+        <input id="keyInput" type="text" maxlength="16" placeholder="Наприклад: mySecretKey12345">
+        <br>
+
+        <button id="encryptBtn">Зашифрувати</button>
+        <button id="decryptBtn">Розшифрувати</button>
+
+        <h3>Результат:</h3>
+        <div id="result" class="result">Тут буде показано результат</div>
+        <div id="explanation"class="explanation">Пояснення будуть тут показані</div>
+
+    </div>
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/practice-aes.js"></script>
+</body>
+</html>

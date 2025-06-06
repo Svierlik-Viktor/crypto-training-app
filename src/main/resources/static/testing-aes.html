@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/testing.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container" id="testContainer">
+    <h1>Тестування AES</h1>
+
+    <form id="testForm">
+        <div class="question">
+            <p>1. Що таке AES?</p>
+            <label><input type="radio" name="q1" value="a"> Асиметричний алгоритм шифрування</label>
+            <label><input type="radio" name="q1" value="b"> Симетричний блочний шифр</label>
+            <label><input type="radio" name="q1" value="c"> Хеш-функція</label>
+            <label><input type="radio" name="q1" value="d"> Мережевий протокол</label>
+        </div>
+
+        <div class="question">
+            <p>2. Яка довжина блоку в AES?</p>
+            <label><input type="radio" name="q2" value="a"> 64 біти</label>
+            <label><input type="radio" name="q2" value="b"> 128 біти</label>
+            <label><input type="radio" name="q2" value="c"> 192 біти</label>
+            <label><input type="radio" name="q2" value="d"> 256 біти</label>
+        </div>
+
+        <div class="question">
+            <p>3. Які довжини ключа підтримує AES?</p>
+            <label><input type="radio" name="q3" value="a"> 128, 192, 256 біти</label>
+            <label><input type="radio" name="q3" value="b"> Тільки 128 біт</label>
+            <label><input type="radio" name="q3" value="c"> Тільки 256 біт</label>
+            <label><input type="radio" name="q3" value="d"> 64, 128, 256 біти</label>
+        </div>
+
+        <div class="question">
+            <p>4. Який режим AES є найменш безпечним?</p>
+            <label><input type="radio" name="q4" value="a"> CBC</label>
+            <label><input type="radio" name="q4" value="b"> ECB</label>
+            <label><input type="radio" name="q4" value="c"> GCM</label>
+            <label><input type="radio" name="q4" value="d"> CTR</label>
+        </div>
+
+        <div class="question">
+            <p>5. Що відбувається на етапі MixColumns?</p>
+            <label><input type="radio" name="q5" value="a"> Додавання ключа</label>
+            <label><input type="radio" name="q5" value="b"> Перестановка рядків</label>
+            <label><input type="radio" name="q5" value="c"> Лінійна трансформація стовпців</label>
+            <label><input type="radio" name="q5" value="d"> Підстановка байтів</label>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Перевірити</button>
+    </form>
+
+    <div id="result">Результат буде показано тут</div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/testing-aes.js"></script>
+
+</body>
+</html>

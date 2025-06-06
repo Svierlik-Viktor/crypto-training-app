@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/practice.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<!-- Секція теорії (категорії) -->
+<div class="theory-wrapper">
+    <div class="theory-category">
+        <h2>Класичні</h2>
+        <div class="theory-buttons">
+            <button class="theory-button" onclick="location.href='practice-caesar.html'">Шифр Цезаря</button>
+            <button class="theory-button" onclick="location.href='practice-vigenere.html'">Віженера</button>
+            <button class="theory-button" onclick="location.href='practice-columnar.html'">Перестановка</button>
+        </div>
+    </div>
+    <div class="theory-category">
+        <h2>Симетричні</h2>
+        <div class="theory-buttons">
+            <button class="theory-button" onclick="location.href='practice-aes.html'">AES</button>
+            <button class="theory-button" onclick="location.href='practice-tripledes.html'">Triple DES</button>
+        </div>
+    </div>
+    <div class="theory-category">
+        <h2>Асиметричні</h2>
+        <div class="theory-buttons">
+            <button class="theory-button" onclick="location.href='practice-rsa.html'">RSA</button>
+            <button class="theory-button" onclick="location.href='practice-ecdsa.html'">ECDSA</button>
+        </div>
+    </div>
+    <div class="theory-category">
+        <h2>Хешування</h2>
+        <div class="theory-buttons">
+            <button class="theory-button" onclick="location.href='practice-md5.html'">MD5</button>
+            <button class="theory-button" onclick="location.href='practice-sha256.html'">SHA-256</button>
+        </div>
+    </div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+</body>
+</html>

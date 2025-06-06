@@ -15,7 +15,6 @@ async function encryptText(text, key) {
         false,
         ["encrypt"]
     );
-
     const iv = generateIV(); // Генерація IV
     const ivArray = new Uint8Array(16);
     for (let i = 0; i < iv.length; i += 2) {
@@ -33,7 +32,7 @@ async function encryptText(text, key) {
 
     return {
         encrypted: btoa(String.fromCharCode(...new Uint8Array(encryptedData))),
-        iv: iv, // Повертаємо згенерований IV
+        iv: iv,
     };
 }
 
@@ -52,7 +51,6 @@ async function decryptText(encrypted, key, iv) {
         false,
         ["decrypt"]
     );
-
     const ivArray = new Uint8Array(16);
     for (let i = 0; i < iv.length; i += 2) {
         ivArray[i / 2] = parseInt(iv.substr(i, 2), 16);
@@ -70,26 +68,9 @@ async function decryptText(encrypted, key, iv) {
     return new TextDecoder().decode(decryptedData);
 }
 
-function isValidAesText(text) {
-    return /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ0-9\s.,!?'"():;[\]{}<>@#%^&*+=_\-\\|/~`$]*$/.test(text);
-}
-
-function isUkrainian(text) {
-    return /[а-яіїєґА-ЯІЇЄҐ]/.test(text);
-}
-
-function isValidUkrainianKey(key) {
-    return /^[а-яіїєґА-ЯІЇЄҐ]{16}$/.test(key);
-}
-
-function isValidEnglishKey(key) {
-    return /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{16}$/.test(key);
-}
-
 document.getElementById("encryptBtn").addEventListener("click", async () => {
     const text = document.getElementById("textInput").value.trim();
     const key = document.getElementById("keyInput").value.trim();
-
     const resultDiv = document.getElementById("result");
     const explanationDiv = document.getElementById("explanation");
 
@@ -125,11 +106,11 @@ document.getElementById("encryptBtn").addEventListener("click", async () => {
 
         const explanationHTML =
             `<b>Кроки шифрування:</b><br>
-        1 Вихідний текст: <code>${text}</code><br>
-        2 Ключ (16 символів): <code>${key}</code><br>
-        3 Згенерований IV: <code>${iv}</code><br>
-        4 Режим: AES-CBC з PKCS#5 Padding<br>
-        5 Результат (Base64): <code>${encrypted}</code>`;
+    1 Вихідний текст: <code>${text}</code><br>
+    2 Ключ (16 символів): <code>${key}</code><br>
+    3 Згенерований IV: <code>${iv}</code><br>
+    4 Режим: AES-CBC з PKCS#5 Padding<br>
+    5 Результат (Base64): <code>${encrypted}</code>`;
 
         resultDiv.innerText = `Зашифрований текст (Base64): ${encrypted}`;
         explanationDiv.innerHTML = explanationHTML;
@@ -146,7 +127,6 @@ document.getElementById("encryptBtn").addEventListener("click", async () => {
 document.getElementById("decryptBtn").addEventListener("click", async () => {
     const encryptedWithIv = document.getElementById("textInput").value.trim();
     const key = document.getElementById("keyInput").value.trim();
-
     const resultDiv = document.getElementById("result");
     const explanationDiv = document.getElementById("explanation");
 
@@ -191,11 +171,11 @@ document.getElementById("decryptBtn").addEventListener("click", async () => {
 
         const explanationHTML =
             `<b>Кроки розшифрування:</b><br>
-        1 Зашифрований текст: <code>${encrypted}</code><br>
-        2 Ключ: <code>${key}</code><br>
-        3 IV: <code>${iv}</code><br>
-        4 Режим: AES-CBC з PKCS#5 Padding<br>
-        5 Вивідний текст: <code>${decrypted}</code>`;
+    1 Зашифрований текст: <code>${encrypted}</code><br>
+    2 Ключ: <code>${key}</code><br>
+    3 IV: <code>${iv}</code><br>
+    4 Режим: AES-CBC з PKCS#5 Padding<br>
+    5 Вивідний текст: <code>${decrypted}</code>`;
 
         resultDiv.innerText = `Розшифрований текст: ${decrypted}`;
         explanationDiv.innerHTML = explanationHTML;

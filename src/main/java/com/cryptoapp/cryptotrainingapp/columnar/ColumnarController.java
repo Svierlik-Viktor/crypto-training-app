@@ -16,12 +16,12 @@ public class ColumnarController {
     }
 
     @PostMapping("/encrypt")
-    public ColumnarResponse encrypt(@RequestBody TextWithKeyRequest request) {
+    public ColumnarResult encrypt(@RequestBody TextWithKeyRequest request) {
         return columnarService.encryptExplained(request.getText(), request.getKey());
     }
 
     @PostMapping("/decrypt")
-    public ColumnarResponse decrypt(@RequestBody TextWithKeyRequest request) {
+    public ColumnarResult decrypt(@RequestBody TextWithKeyRequest request) {
         return columnarService.decryptExplained(request.getText(), request.getKey());
     }
 }

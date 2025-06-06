@@ -23,11 +23,11 @@ document.getElementById('hashBtn').addEventListener('click', async () => {
         const resultHtml = await response.text();
         resultDiv.innerHTML = resultHtml;
 
-        // ✅ Витягуємо хеш-значення з HTML (наприклад, із <pre>)
+        //  Витягуємо хеш-значення з HTML (наприклад, із <pre>)
         const hashMatch = resultHtml.match(/([a-f0-9]{64})/i);
         const hashValue = hashMatch ? hashMatch[1] : "Невідомо";
 
-        // ✅ Зберігаємо результат у localStorage
+        //  Зберігаємо результат у localStorage
         saveResult({
             algorithm: "SHA-256",
             input: `${inputText}`,

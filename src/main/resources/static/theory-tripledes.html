@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/theory.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<header>
+  <h1>Triple DES (3DES)</h1>
+</header>
+<main>
+  <section class="section">
+    <h2>1. Теорія Triple DES</h2>
+    <p>
+      Triple DES (3DES) — це вдосконалена версія алгоритму DES (Data Encryption Standard), яка забезпечує вищий рівень безпеки.
+      Замість одного проходу шифрування, як у звичайному DES, Triple DES виконує три послідовних операції: шифрування, розшифрування і знову шифрування з використанням трьох ключів (K1, K2, K3).<br>
+      Triple DES широко використовувався до впровадження AES, хоча сьогодні вважається застарілим через повільність та меншу безпеку порівняно з сучасними алгоритмами.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>2. Переваги Triple DES</h2>
+    <ul>
+      <li>Значно безпечніший за класичний DES.</li>
+      <li>Сумісний із обладнанням/системами, які раніше використовували DES.</li>
+      <li>Захищений від деяких атак, ефективних для DES (наприклад, атака по відомому тексту).</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>3. Недоліки Triple DES</h2>
+    <ul>
+      <li>Низька продуктивність — повільніший за сучасні алгоритми, такі як AES.</li>
+      <li>Не такий криптостійкий, як сучасні стандарти, зокрема AES-256.</li>
+      <li>Фактична довжина ключа — лише 112 біт (у випадку 2-ключового режиму), незважаючи на загальну довжину 168 біт.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>4. Формула шифрування та дешифрування</h2>
+    <ul>
+      <li><b>Шифрування:</b> C = E<sub>K3</sub>(D<sub>K2</sub>(E<sub>K1</sub>(P)))</li>
+      <li><b>Дешифрування:</b> P = D<sub>K1</sub>(E<sub>K2</sub>(D<sub>K3</sub>(C)))</li>
+      <li>де P — відкритий текст, C — шифротекст, E — операція шифрування, D — операція розшифрування, K1, K2, K3 — ключі.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>5. Кроки алгоритму Triple DES</h2>
+    <ol>
+      <li>Задати три ключі: K1, K2, K3 (можливий варіант з двома ключами: K1, K2, K1).</li>
+      <li>Зашифрувати відкритий текст з використанням ключа K1.</li>
+      <li>Розшифрувати результат з використанням ключа K2.</li>
+      <li>Знову зашифрувати результат з використанням ключа K3.</li>
+      <li>Отриманий результат — це фінальний шифротекст.</li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>6. Реалізація Triple DES на Java</h2>
+    <pre><code>
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+
+public class TripleDES {
+
+    public static String encrypt(String plainText, byte[] keyBytes) throws Exception {
+        SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+        Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encrypted = cipher.doFinal(plainText.getBytes());
+        return Base64.getEncoder().encodeToString(encrypted);
+    }
+
+    public static String decrypt(String encryptedText, byte[] keyBytes) throws Exception {
+        SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+        Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decrypted = cipher.doFinal(Base64.getDecoder().decode(encryptedText));
+        return new String(decrypted);
+    }
+
+    public static void main(String[] args) throws Exception {
+        String message = "Hello Triple DES!";
+        byte[] keyBytes = "0123456789abcdef01234567".getBytes(); // 24 байти (3 DES ключі по 8 байт)
+
+        String encrypted = encrypt(message, keyBytes);
+        System.out.println("Encrypted: " + encrypted);
+
+        String decrypted = decrypt(encrypted, keyBytes);
+        System.out.println("Decrypted: " + decrypted);
+    }
+}
+    </code></pre>
+  </section>
+</main>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+</body>
+</html>

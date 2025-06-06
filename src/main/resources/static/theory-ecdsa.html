@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crypto Training App</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/theory.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<header>
+  <h1>ECDSA (Elliptic Curve Digital Signature Algorithm)</h1>
+</header>
+
+<main>
+  <section class="section">
+    <h2>1. Теорія ECDSA</h2>
+    <p>
+      ECDSA — це цифровий алгоритм підпису, що базується на еліптичних кривих. Він є модифікацією класичного алгоритму DSA, але використовує математику еліптичних кривих замість простих чисел.
+      Завдяки цьому ECDSA забезпечує такий самий рівень безпеки, як RSA, але при менших розмірах ключів.
+    </p>
+    <p>
+      ECDSA широко використовується в сучасних криптовалютних системах (наприклад, Bitcoin), протоколах безпеки (TLS/SSL), а також у мобільних і вбудованих пристроях.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>2. Переваги ECDSA</h2>
+    <ul>
+      <li>Менші розміри ключів (наприклад, 256-бітний ECDSA ≈ 3072-бітний RSA).</li>
+      <li>Швидше створення та перевірка підпису.</li>
+      <li>Ефективність у пристроях з обмеженими ресурсами (смарт-карти, IoT).</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>3. Недоліки ECDSA</h2>
+    <ul>
+      <li>Складніша реалізація, ніж RSA або DSA.</li>
+      <li>Потребує надійного джерела випадкових чисел (інакше підпис можна зламати).</li>
+      <li>Деякі старі системи не підтримують еліптичні криві.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>4. Формула створення та перевірки підпису</h2>
+    <ul>
+      <li><b>Підписування:</b> використовується приватний ключ для створення підпису (r, s) над хешем повідомлення.</li>
+      <li><b>Перевірка:</b> використовується відкритий ключ для перевірки того, що (r, s) є дійсним підписом цього хешу.</li>
+      <li>Алгоритм працює на еліптичній кривій над скінченним полем.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>5. Кроки алгоритму ECDSA</h2>
+    <ol>
+      <li>Генерується пара ключів: відкритий і приватний на основі еліптичної кривої.</li>
+      <li>Повідомлення хешується (наприклад, за допомогою SHA-256).</li>
+      <li>Генерується випадкове число <code>k</code>, використовується для обчислення підпису <code>(r, s)</code>.</li>
+      <li>Підпис <code>(r, s)</code> надсилається разом із повідомленням.</li>
+      <li>Отримувач використовує відкритий ключ, щоб перевірити правильність підпису.</li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>6. Реалізація ECDSA на Java</h2>
+    <pre><code>
+import java.security.*;
+import java.security.spec.*;
+import java.util.Base64;
+
+public class ECDSADemo {
+    public static void main(String[] args) throws Exception {
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("EC");
+        keyGen.initialize(new ECGenParameterSpec("secp256r1"));
+        KeyPair keyPair = keyGen.generateKeyPair();
+
+        // Підпис
+        Signature ecdsaSign = Signature.getInstance("SHA256withECDSA");
+        ecdsaSign.initSign(keyPair.getPrivate());
+        String message = "ECDSA is secure!";
+        ecdsaSign.update(message.getBytes());
+        byte[] signature = ecdsaSign.sign();
+
+        // Перевірка підпису
+        Signature ecdsaVerify = Signature.getInstance("SHA256withECDSA");
+        ecdsaVerify.initVerify(keyPair.getPublic());
+        ecdsaVerify.update(message.getBytes());
+        boolean valid = ecdsaVerify.verify(signature);
+
+        System.out.println("Підпис (Base64): " + Base64.getEncoder().encodeToString(signature));
+        System.out.println("Чи дійсний підпис? " + valid);
+    }
+}
+    </code></pre>
+  </section>
+</main>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+</body>
+</html>

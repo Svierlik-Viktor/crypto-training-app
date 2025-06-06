@@ -1,6 +1,6 @@
 package com.cryptoapp.cryptotrainingapp;
 
-import com.cryptoapp.cryptotrainingapp.columnar.ColumnarResponse;
+import com.cryptoapp.cryptotrainingapp.columnar.ColumnarResult;
 import com.cryptoapp.cryptotrainingapp.columnar.ColumnarService;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -14,8 +14,8 @@ public class ColumnarServiceTest {
         String plaintext = "HELLOCOLUMNAR";
         String key = "ZEBRAS";
 
-        ColumnarResponse encrypted = columnarService.encryptExplained(plaintext, key);
-        ColumnarResponse decrypted = columnarService.decryptExplained(encrypted.getResult(), key);
+        ColumnarResult encrypted = columnarService.encryptExplained(plaintext, key);
+        ColumnarResult decrypted = columnarService.decryptExplained(encrypted.getResult(), key);
 
         assertEquals(plaintext, decrypted.getResult());
     }
@@ -25,7 +25,7 @@ public class ColumnarServiceTest {
         String plaintext = "HELLO";
         String key = "KEY";
 
-        ColumnarResponse encrypted = columnarService.encryptExplained(plaintext, key);
+        ColumnarResult encrypted = columnarService.encryptExplained(plaintext, key);
         int totalLength = encrypted.getMatrix().size() * key.length();
 
         // Перевірка, що довжина матриці дорівнює кількість рядків × кількість стовпців
@@ -42,8 +42,8 @@ public class ColumnarServiceTest {
         String paddedPlaintext = "HELLOXX";
         String key = "DOG";
 
-        ColumnarResponse encrypted = columnarService.encryptExplained(paddedPlaintext, key);
-        ColumnarResponse decrypted = columnarService.decryptExplained(encrypted.getResult(), key);
+        ColumnarResult encrypted = columnarService.encryptExplained(paddedPlaintext, key);
+        ColumnarResult decrypted = columnarService.decryptExplained(encrypted.getResult(), key);
 
         // Перевіряємо, що результат не містить зайвих 'X' у кінці
         assertEquals("HELLO", decrypted.getResult());
@@ -53,10 +53,10 @@ public class ColumnarServiceTest {
     public void testEmptyTextReturnsEmptyResult() {
         String key = "KEY";
 
-        ColumnarResponse encrypted = columnarService.encryptExplained("", key);
+        ColumnarResult encrypted = columnarService.encryptExplained("", key);
         assertEquals("", encrypted.getResult());
 
-        ColumnarResponse decrypted = columnarService.decryptExplained("", key);
+        ColumnarResult decrypted = columnarService.decryptExplained("", key);
         assertEquals("", decrypted.getResult());
     }
 
@@ -65,8 +65,8 @@ public class ColumnarServiceTest {
         String text = "ABCDEFG";
         String key = "A";
 
-        ColumnarResponse encrypted = columnarService.encryptExplained(text, key);
-        ColumnarResponse decrypted = columnarService.decryptExplained(encrypted.getResult(), key);
+        ColumnarResult encrypted = columnarService.encryptExplained(text, key);
+        ColumnarResult decrypted = columnarService.decryptExplained(encrypted.getResult(), key);
 
         assertEquals(text, decrypted.getResult());
     }

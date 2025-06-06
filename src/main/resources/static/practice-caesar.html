@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crypto Training App</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container">
+  <h1>Практика: Шифр Цезаря</h1>
+  <p>Введіть текст для шифрування або розшифрування за допомогою шифру Цезаря.
+    Зверніть увагу: підтримується лише англійська мова, оскільки в шифрі використовується алфавіт із 26 літер.</p>
+
+  <label for="caesarText">Текст:</label>
+  <textarea id="caesarText" rows="3" placeholder="Введіть текст..."></textarea>
+
+  <label for="shift">Зсув (наприклад, 3):</label>
+  <input type="number" id="shift" value="3" min="1" max="25" />
+
+  <button id="encryptBtn">Зашифрувати</button>
+  <button id="decryptBtn">Розшифрувати</button>
+
+  <h3>Результат:</h3>
+  <div id="result" class="result">Тут буде показано результат</div>
+</div>
+
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/practice-caesar.js"></script>
+</body>
+</html>

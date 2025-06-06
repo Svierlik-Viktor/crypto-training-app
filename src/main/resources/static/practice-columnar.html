@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crypto Training App</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/practice-common.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="container">
+  <h1>Практика: Шифр колонної перестановки</h1>
+  <p>Введіть текст і ключ для шифрування або розшифрування за допомогою шифру колонної перестановки.</p>
+
+  <label for="text">Текст:</label>
+  <textarea id="text" rows="3" placeholder="Введіть текст..."></textarea>
+
+  <label for="key">Ключ (слово):</label>
+  <input type="text" id="key" placeholder="Наприклад: ZEBRAS" />
+
+  <button id="encryptBtn">Зашифрувати</button>
+  <button id="decryptBtn">Розшифрувати</button>
+
+  <h3>Результат:</h3>
+  <div id="result" class="result">Тут буде показано результат</div>
+
+  <h3>Пояснення:</h3>
+  <div id="explanation"class="result">Пояснення будуть тут показані</div>
+</div>
+<script src="/js/header-loader.js"></script>
+<script src="/js/practice-common.js"></script>
+<script src="/js/practice-columnar.js"></script>
+</body>
+</html>
